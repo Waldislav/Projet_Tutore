@@ -47,3 +47,13 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+
+Data/france.csv
+Classeur/france.csv
+*/france.csv
+./*/france.csv
+france.csv
+Classeur/france.csv
+
+.DS_Store
