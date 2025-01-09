@@ -1,11 +1,14 @@
 library(tidyverse)
 library(rjson)
 
-# Exemple de données fictives (à remplacer par vos données "france")
+# Pour charger nos csv (la commande setwd("/chemin/vers/script") dans le terminal pour se placer correctement)
+france <- read_csv("../Data/france.csv")
+user <- read_csv("../Data/user.csv")
+producteur <- read_csv("../Data/producteur.csv")
 
 # Parsing des données
-parsed_data <- france %>% sample_n(10000) %>%
-  
+parsed_data <- france %>% 
+  # sample_n(10000) %>%
   rowwise() %>%
   rowid_to_column() %>%
   mutate(parsed = list(fromJSON(pfas_values))) %>%
