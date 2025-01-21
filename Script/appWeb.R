@@ -39,7 +39,7 @@ server <- function(input, output) {
     } else {
       max_val <- max(data$final_value, na.rm = TRUE)
       
-      leaflet(data) %>%
+      leaflet(data, user) %>%
         addTiles() %>%
         addCircleMarkers(
           ~lon, ~lat,
@@ -47,6 +47,14 @@ server <- function(input, output) {
           popup = ~paste("Substance:", substance, "<br>",
                          "Valeur:", final_value, "<br>",
                          "Année:", year),
+          radius = ~ifelse(max_val > 0, (final_value / max_val) * 10, 5),
+          fillOpacity = 0.7,
+          stroke = FALSE
+        ) %>%
+        addCircleMarkers(
+          ~user$lon, ~user$lat,
+          color = "#FF0000",
+          popup = ~paste("Nom:", user$name, "<br>"),
           radius = ~ifelse(max_val > 0, (final_value / max_val) * 10, 5),
           fillOpacity = 0.7,
           stroke = FALSE

@@ -14,6 +14,12 @@ parsed_data <- france %>%
   mutate(parsed = list(fromJSON(pfas_values))) %>%
   ungroup()
 
+producteur <- producteur %>%
+  filter(country == "France")
+
+user <- user %>%
+  filter(country == "France")
+
 pfas_df <- parsed_data %>% 
   unnest_longer(parsed) %>%
   select(rowid,lat, lon, year, data = parsed) %>%
