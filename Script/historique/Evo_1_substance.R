@@ -2,8 +2,8 @@ library(tidyverse)
 library(lubridate)
 
 # Étape 1 : Ajouter la colonne 'years' et 'less_than' et effectuer un groupement par année
-pfas_summary <- pfas_df %>%
-  left_join(parsed_data %>% select(rowid, year), by = "rowid") %>%  # Associer 'years' au dataframe pfas_df
+pfas_summary <- pfas %>%
+  left_join(france %>% select(rowid, year), by = "rowid") %>%  # Associer 'years' au dataframe pfas_df
   group_by(year = year, substance) %>%  # Groupement par année et substance
   summarise(
     avg_value = mean(value, na.rm = TRUE),  # Calcul de la moyenne des valeurs

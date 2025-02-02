@@ -55,5 +55,6 @@ Classeur/france.csv
 ./*/france.csv
 france.csv
 Classeur/france.csv
+Data/*.csv
 
 .DS_Store

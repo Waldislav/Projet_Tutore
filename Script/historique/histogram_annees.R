@@ -5,7 +5,7 @@ groupe_annee <- aggregate(pfas_sum ~ year, data = france, FUN = sum)
 
 # Créer le graphique de l'évolution de pfas_sum par année
 ggplot(groupe_annee, aes(x = year, y = pfas_sum)) +
-  geom_line(group = 1, color = brewer.pal(3, "Set1")[2], size = 1.2) +  # Ligne bleue pour l'évolution
+  geom_line(group = 1, color = brewer.pal(3, "Set1")[2], linewidth = 1.2) +  # Ligne bleue pour l'évolution
   geom_point(color = brewer.pal(3, "Set1")[1], size = 2) +  # Points rouges pour chaque valeur
   labs(title = "Évolution de la quantité de PFAS détectés en France au fil du temps",
        x = "Année", 
@@ -24,3 +24,6 @@ ggplot(matrix_france, aes(x = matrix, y = pfas_sum, fill = matrix)) +
        y = "Somme des PFAS") +
   theme_minimal() +  # Thème minimal pour le graphique
   scale_fill_brewer(palette = "Set1")  # Palette de couleurs agréables
+
+rm(matrix_france)
+rm(groupe_annee)
