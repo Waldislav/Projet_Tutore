@@ -63,10 +63,14 @@ server <- function(input, output) {
         )
       ) %>%
       addCircleMarkers(
+        data = filtered_data(),
         ~lon, ~lat,
-        color = ~substance,
-        fillColor = "red",
-        opacity = ~rescale(value, to = c(0.1, 1)),  # Ajuster l'opacité en fonction de final_value
+        color = "black",
+        opacity = 1,
+        weight = 1,
+        fillColor = "orange",
+        fillOpacity = 1,
+        radius = 3,
         popup = ~paste(
           "Région:", region, "<br>",
           "Ville:", city, "<br>",
@@ -76,23 +80,65 @@ server <- function(input, output) {
         )
       ) %>%
       addCircleMarkers(
-        data = user,  # Remplacer par vos données utilisateur
-        ~lon, ~lat,    # Latitude et longitude des utilisateurs
-        color = "grey",  # Choisir une couleur pour les utilisateurs
-        radius = 5,  # Taille des marqueurs
-        fillColor = "grey",  # Couleur de remplissage
-        fillOpacity = 1,   # Opacité des marqueurs
-        popup = ~paste("Utilisateur : ", name)  # Popup avec le nom de l'utilisateur
+        data = user,
+        ~lon, ~lat,
+        color = "grey",
+        radius = 3,
+        fillColor = "grey",
+        fillOpacity = 1,
+        popup = ~paste("Utilisateur : ", name)
       ) %>%
-      # Ajouter les points des producteurs
       addCircleMarkers(
-        data = producteur,  # Remplacer par vos données producteur
-        ~lon, ~lat,    # Latitude et longitude des producteurs
-        color = "black",  # Choisir une couleur pour les producteurs
-        radius = 5,  # Taille des marqueurs
-        fillColor = "black",  # Couleur de remplissage
-        fillOpacity = 1,   # Opacité des marqueurs
-        popup = ~paste("Producteur : ", name)  # Popup avec le nom du producteur
+        data = producteur,
+        ~lon, ~lat,
+        color = "black",
+        radius = 3,
+        fillColor = "black",
+        fillOpacity = 1,
+        popup = ~paste("Producteur : ", name)
+      )
+  })
+  
+  observeEvent(input$map_zoom, {
+    zoom_level <- input$map_zoom
+    radius_scale <- pmax(5, 10 / zoom_level) 
+    
+    leafletProxy("map") %>%
+      clearMarkers() %>%
+      addCircleMarkers(
+        data = filtered_data(),
+        ~lon, ~lat,
+        color = "black",
+        opacity = 1,
+        weight = 1,
+        fillColor = "orange",
+        fillOpacity = 1,
+        radius = radius_scale,
+        popup = ~paste(
+          "Région:", region, "<br>",
+          "Ville:", city, "<br>",
+          "Substance:", substance, "<br>",
+          "Valeur PFAS:", value, "<br>",
+          "Année:", year
+        )
+      ) %>%
+      addCircleMarkers(
+        data = user,
+        ~lon, ~lat,
+        color = "grey",
+        radius = radius_scale-1,
+        fillColor = "grey",
+        fillOpacity = 1,
+        popup = ~paste("Utilisateur : ", name)
+      ) %>%
+      addCircleMarkers(
+        data = producteur,
+        ~lon, ~lat,
+        color = "black",
+        radius = radius_scale-1,
+        fillColor = "black",
+        fillOpacity = 1,
+        popup = ~paste("Producteur : ", name)
       )
   })
   

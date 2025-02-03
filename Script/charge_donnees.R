@@ -32,9 +32,12 @@ eaurob <- read_csv("../Data/france_eaurob.csv")
 # 131
 radiofrance_dw <- read_csv("../Data/radiofrance_dw.csv")
 # 132
-#tfa <- read_csv("../Data/tfa.csv")
+tfa <- read_csv("../Data/tfa.csv")
 
-france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface_water)
+surface_water <- complete_city_country(surface_water)
+tfa <- complete_city_country(tfa)
+
+france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface_water, tfa)
 france <- complete_lat_lon(france)
 
 # On filtre toutes les valeurs non significatives
@@ -51,4 +54,4 @@ rm(rhine)
 rm(eaurob)
 rm(radiofrance_dw)
 rm(surface_water)
-#rm(tfa)
+rm(tfa)

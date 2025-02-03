@@ -22,3 +22,4 @@ ggplot(pfas_summary, aes(x = year, y = avg_value, color = substance)) +
   ) +
   theme_minimal()
 
+rm(pfas_summary)

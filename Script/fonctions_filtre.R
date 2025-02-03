@@ -33,6 +33,22 @@ complete_lat_lon <- function(df) {
   return(df)
 }
 
+complete_city_country <- function(df) {
+  # Convertir le dataframe en objet sf avec les coordonnées
+  df_sf <- st_as_sf(df, coords = c("lon", "lat"), crs = 4326)
+  
+  # Effectuer une jointure spatiale pour trouver les correspondances
+  df_sf <- st_join(df_sf, regions, left = TRUE)
+  
+  # Remplir les valeurs manquantes de country et city si disponibles
+  df_filled <- df %>%
+    mutate(
+      country = ifelse(is.na(country), df_sf$COUNTRY, country),
+      city = ifelse(is.na(city), df_sf$NAME_1, city)
+    )
+  
+  return(df_filled)
+}
 
 nettoyer <- function(df) {
   df_clean <- df %>%
