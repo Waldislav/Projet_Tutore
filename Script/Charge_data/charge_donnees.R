@@ -4,7 +4,7 @@ regions <- st_read("../gadm41_FRA.gpkg", layer = "ADM_ADM_1")
 #villes <- read_csv("../Data/villes.csv")
 
 # Fonctions de traitements
-source("fonctions_filtre.R")
+source("Charge_data/fonctions_filtre.R")
 
 
 # Chargement des données d'utilisateurs et producteurs de pfas
@@ -41,7 +41,7 @@ france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface
 france <- nettoyer(france)
 
 # On ajoute les regions à france
-source("regions.R")
+source("Charge_data/regions.R")
 
 # On supprime les dataframes innutilisés 
 rm(ades)
