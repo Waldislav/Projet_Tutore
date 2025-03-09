@@ -65,7 +65,6 @@ server <- function(input, output) {
     region_id <- input$map_shape_click$id
     
     # Compter le nombre de lignes par région et par matrix dans le dataframe "france"
-    # Compter le nombre de lignes par région et par matrix dans le dataframe "france"
     france_count <- france %>%
       filter(region == region_id) %>%
       count(matrix)
@@ -82,6 +81,99 @@ server <- function(input, output) {
       theme_minimal() +
       theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
       scale_fill_brewer(palette = "Set1")  # Palette de couleurs pour les barres
+  })
+  
+  # Nouveau graphique pour la France
+  output$france_plot <- renderPlot({
+    # Agréger les données pour la France entière
+    france_data <- resultats %>%
+      group_by(year) %>%
+      summarise(
+        total_prelevements = n(),
+        non_conforme_France = sum(non_conformes_France, na.rm = TRUE),
+        non_conforme_Danemark = sum(non_conformes_Danemark, na.rm = TRUE),
+        non_conforme_USA = sum(non_conformes_USA, na.rm = TRUE)
+      ) %>%
+      mutate(
+        pourcentage_France = (non_conforme_France / total_prelevements) * 100,
+        pourcentage_Danemark = (non_conforme_Danemark / total_prelevements) * 100,
+        pourcentage_USA = (non_conforme_USA / total_prelevements) * 100
+      )
+    
+    # Convertir les données en format long pour ggplot2
+    france_long <- france_data %>%
+      pivot_longer(
+        cols = starts_with("pourcentage"),
+        names_to = "reglementation",
+        values_to = "pourcentage_non_conformes"
+      ) %>%
+      mutate(reglementation = case_when(
+        reglementation == "pourcentage_France" ~ "France",
+        reglementation == "pourcentage_Danemark" ~ "Danemark",
+        reglementation == "pourcentage_USA" ~ "USA"
+      ))
+    
+    # Créer le graphique pour la France
+    ggplot(france_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
+      geom_line(size = 1) +
+      geom_point(size = 2) +
+      labs(
+        title = "Évolution du pourcentage de prélèvements non conformes en France",
+        x = "Année",
+        y = "Pourcentage de prélèvements non conformes",
+        color = "Réglementation"
+      ) +
+      theme_minimal() +
+      theme(legend.position = "bottom")
+  })
+  
+  # Nouveau graphique pour la région sélectionnée
+  output$region_plot <- renderPlot({
+    req(input$map_shape_click)
+    
+    region_id <- input$map_shape_click$id
+    
+    # Agréger les données pour la région sélectionnée
+    region_data <- resultats_region_annee %>%
+      filter(region == region_id) %>%
+      group_by(year) %>%
+      summarise(
+        total_prelevements = n(),
+        non_conforme_France = sum(non_conformes_France, na.rm = TRUE),
+        non_conforme_Danemark = sum(non_conformes_Danemark, na.rm = TRUE),
+        non_conforme_USA = sum(non_conformes_USA, na.rm = TRUE)
+      ) %>%
+      mutate(
+        pourcentage_France = (non_conforme_France / total_prelevements) * 100,
+        pourcentage_Danemark = (non_conforme_Danemark / total_prelevements) * 100,
+        pourcentage_USA = (non_conforme_USA / total_prelevements) * 100
+      )
+    
+    # Convertir les données en format long pour ggplot2
+    region_long <- region_data %>%
+      pivot_longer(
+        cols = starts_with("pourcentage"),
+        names_to = "reglementation",
+        values_to = "pourcentage_non_conformes"
+      ) %>%
+      mutate(reglementation = case_when(
+        reglementation == "pourcentage_France" ~ "France",
+        reglementation == "pourcentage_Danemark" ~ "Danemark",
+        reglementation == "pourcentage_USA" ~ "USA"
+      ))
+    
+    # Créer le graphique pour la région sélectionnée
+    ggplot(region_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
+      geom_line(size = 1) +
+      geom_point(size = 2) +
+      labs(
+        title = paste("Évolution du pourcentage de prélèvements non conformes dans", region_id),
+        x = "Année",
+        y = "Pourcentage de prélèvements non conformes",
+        color = "Réglementation"
+      ) +
+      theme_minimal() +
+      theme(legend.position = "bottom")
   })
   
   # Texte pour la région sélectionnée
@@ -114,5 +206,3 @@ server <- function(input, output) {
     }
   })
 }
-
-

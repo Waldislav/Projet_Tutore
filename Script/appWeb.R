@@ -6,6 +6,7 @@ library(scales)
 library(gridExtra)
 
 source("Charge_data/main.R")
+#source("Analyses/Normes_tableau.R")
 source("page_web/ui.R")
 source("page_web/server.R")
 

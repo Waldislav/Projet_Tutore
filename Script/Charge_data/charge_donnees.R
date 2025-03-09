@@ -40,6 +40,11 @@ france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface
 # On filtre toutes les valeurs non significatives
 france <- nettoyer(france)
 
+resultats_region_annee <- read_csv("../Data/reglementations/resultats_region_annee.csv")
+resultats_region <- read_csv("../Data/reglementations/resultats_region.csv")
+resultats <- read_csv("../Data/reglementations/resultats.csv")
+
+
 # On ajoute les regions à france
 source("Charge_data/regions.R")
 

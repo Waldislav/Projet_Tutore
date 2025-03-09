@@ -19,7 +19,9 @@ ui <- fluidPage(
     mainPanel(
       leafletOutput("map"),
       plotOutput("combined_plot"),  # Sortie pour le graphique combiné existant
-      plotOutput("box_plot")        # Sortie pour le nouveau graphique en bougies
+      plotOutput("box_plot"),       # Sortie pour le nouveau graphique en bougies
+      plotOutput("france_plot"),    # Nouveau graphique pour la France
+      plotOutput("region_plot")     # Nouveau graphique pour la région sélectionnée
     )
   )
 )
