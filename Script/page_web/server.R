@@ -24,14 +24,14 @@ server <- function(input, output) {
     create_map(filtered_data())  # Fonction définie dans map_logic.R
   })
   
-  # Graphique combiné
+  # Graphique combiné existant
   output$combined_plot <- renderPlot({
     req(input$map_shape_click)
     
     region_id <- input$map_shape_click$id
     selected_substance <- input$substance
     
-    # Filtrer les données par région sélectionnée pour le nouveau graphique
+    # Filtrer les données par région sélectionnée pour le graphique existant
     pfas_data <- pfas %>%
       filter(region == region_id,
              substance %in% names(sort(table(substance), decreasing = TRUE))[1:9]) %>%
@@ -40,22 +40,48 @@ server <- function(input, output) {
     
     # Créer le diagramme en barres empilées
     p1 <- ggplot(pfas_data, aes(x = matrix, y = value, fill = substance)) +
-      geom_bar(stat = "identity", position = "stack") +  # Barres empilées
+      geom_bar(stat = "identity", position = "stack") +
       labs(
         title = "Quantité de PFAS détectée par milieu et par substance",
         x = "Milieu (Matrix)",
         y = "Quantité de PFAS détectée",
         fill = "Substance"
       ) +
-      theme_minimal() +  # Style épuré
-      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # Rotation des noms des matrices
-      scale_fill_brewer(palette = "Set1")  # Palette de couleurs
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      scale_fill_brewer(palette = "Set1")
     
     # Appeler l'ancien graphique
     p2 <- create_combined_plot(region_id, selected_substance, input$show_prelevements, input$show_pfas_total, input$show_selected_pfas)
     
     # Afficher les deux graphiques
     grid.arrange(p1, p2, nrow = 2)
+  })
+  
+  # Nouveau graphique en bougies : Nombre de lignes par matrix pour la région sélectionnée
+  output$box_plot <- renderPlot({
+    req(input$map_shape_click)
+    
+    region_id <- input$map_shape_click$id
+    
+    # Compter le nombre de lignes par région et par matrix dans le dataframe "france"
+    # Compter le nombre de lignes par région et par matrix dans le dataframe "france"
+    france_count <- france %>%
+      filter(region == region_id) %>%
+      count(matrix)
+    
+    # Créer le graphique en barres avec des barres pleines
+    ggplot(france_count, aes(x = matrix, y = n, fill = matrix)) +
+      geom_bar(stat = "identity") +  # Barres pleines avec une couleur par matrix
+      labs(
+        title = paste("Nombre de lignes par milieu (Matrix) dans", region_id),
+        x = "Milieu (Matrix)",
+        y = "Nombre de lignes",
+        fill = "Milieu"
+      ) +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      scale_fill_brewer(palette = "Set1")  # Palette de couleurs pour les barres
   })
   
   # Texte pour la région sélectionnée
@@ -88,3 +114,5 @@ server <- function(input, output) {
     }
   })
 }
+
+

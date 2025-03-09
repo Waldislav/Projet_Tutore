@@ -11,3 +11,4 @@ source("page_web/server.R")
 
 # Lancer l'application Shiny
 shinyApp(ui = ui, server = server)
+
