@@ -1,11 +1,10 @@
 ui <- fluidPage(
-  theme = shinytheme("cerulean"),
   titlePanel("PFAS par Région"),
   sidebarLayout(
     sidebarPanel(
-      selectInput("substance", "Choisir une substance :", 
-                  choices = unique(pfas_group_filtre$substance)),
-      sliderInput("year", "Année :", 
+      selectInput("substance", "Choisir une substance :",
+                  choices = unique(pfas$substance)),
+      sliderInput("year", "Année :",
                   min = min(pfas$year, na.rm = TRUE),
                   max = max(pfas$year, na.rm = TRUE),
                   value = min(pfas$year, na.rm = TRUE),
@@ -19,7 +18,7 @@ ui <- fluidPage(
     ),
     mainPanel(
       leafletOutput("map"),
-      plotOutput("combined_plot")
+      plotOutput("combined_plot")  # Sortie pour le graphique combiné
     )
   )
 )

@@ -13,9 +13,9 @@ server <- function(input, output) {
     }
     
     data %>%
-      filter(substance == input$substance, 
-             !is.na(lat), 
-             !is.na(lon), 
+      filter(substance == input$substance,
+             !is.na(lat),
+             !is.na(lon),
              !is.na(value))
   })
   
@@ -31,7 +31,31 @@ server <- function(input, output) {
     region_id <- input$map_shape_click$id
     selected_substance <- input$substance
     
-    create_combined_plot(region_id, selected_substance, input$show_prelevements, input$show_pfas_total, input$show_selected_pfas)  # Fonction définie dans plot_logic.R
+    # Filtrer les données par région sélectionnée pour le nouveau graphique
+    pfas_data <- pfas %>%
+      filter(region == region_id,
+             substance %in% names(sort(table(substance), decreasing = TRUE))[1:9]) %>%
+      select(region, substance, matrix, value) %>%
+      mutate(value = as.numeric(value))
+    
+    # Créer le diagramme en barres empilées
+    p1 <- ggplot(pfas_data, aes(x = matrix, y = value, fill = substance)) +
+      geom_bar(stat = "identity", position = "stack") +  # Barres empilées
+      labs(
+        title = "Quantité de PFAS détectée par milieu et par substance",
+        x = "Milieu (Matrix)",
+        y = "Quantité de PFAS détectée",
+        fill = "Substance"
+      ) +
+      theme_minimal() +  # Style épuré
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # Rotation des noms des matrices
+      scale_fill_brewer(palette = "Set1")  # Palette de couleurs
+    
+    # Appeler l'ancien graphique
+    p2 <- create_combined_plot(region_id, selected_substance, input$show_prelevements, input$show_pfas_total, input$show_selected_pfas)
+    
+    # Afficher les deux graphiques
+    grid.arrange(p1, p2, nrow = 2)
   })
   
   # Texte pour la région sélectionnée

@@ -14,7 +14,7 @@ restmp <- france %>%
   mutate(rowid = rowid, 
          parsed_values_value = as.numeric(parsed_values_value),
          parsed_values_less_than = as.numeric(parsed_values_less_than)) %>% 
-  select(rowid, region, city, date, year, lat, lon, starts_with("parsed_values_")) %>%
+  select(rowid, region, city, date, year, lat, lon, matrix, starts_with("parsed_values_")) %>%
   rename_with(~ gsub("^parsed_values_", "", .), starts_with("parsed_values_"))
 
 restmp <- as.data.frame(restmp)
