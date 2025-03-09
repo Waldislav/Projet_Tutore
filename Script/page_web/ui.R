@@ -18,7 +18,8 @@ ui <- fluidPage(
     ),
     mainPanel(
       leafletOutput("map"),
-      plotOutput("combined_plot")  # Sortie pour le graphique combiné
+      plotOutput("combined_plot"),  # Sortie pour le graphique combiné existant
+      plotOutput("box_plot")        # Sortie pour le nouveau graphique en bougies
     )
   )
 )
