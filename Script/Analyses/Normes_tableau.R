@@ -9,19 +9,22 @@ normes <- list(
     Biota = 1000,  # Exemple de norme pour Biota (en ng/kg)
     Groundwater = 0.65,  # 0,65 ng/L pour les eaux souterraines (valeur guide pour PFOS)
     Sediment = 1000,  # Exemple de norme pour les sédiments (en ng/kg)
-    Surface_water = 0.65  # 0,65 ng/L pour les eaux de surface (valeur guide pour PFOS)
+    Surface_water = 0.65,  # 0,65 ng/L pour les eaux de surface (valeur guide pour PFOS)
+    Drinking_water = 100  #  pour les eaux potables (norme UE)
   ),
   Danemark = list(
     Biota = 2,  # 2 ng/kg pour Biota
     Groundwater = 2,  # 2 ng/L pour les eaux souterraines
     Sediment = 2,  # 2 ng/kg pour les sédiments
-    Surface_water = 2  # 2 ng/L pour les eaux de surface
+    Surface_water = 2,  # 2 ng/L pour les eaux de surface
+    Drinking_water = 2  # 2 ng/L pour les eaux potables
   ),
   USA = list(
     Biota = 70,  # 70 ng/kg pour Biota
     Groundwater = 70,  # 70 ng/L pour les eaux souterraines
     Sediment = 70,  # 70 ng/kg pour les sédiments
-    Surface_water = 70  # 70 ng/L pour les eaux de surface
+    Surface_water = 70,  # 70 ng/L pour les eaux de surface
+    Drinking_water = 4  # 4 ng/L pour les eaux potables (recommandation EPA)
   )
 )
 
@@ -90,6 +93,25 @@ resultats <- france_conformite %>%
     pourcentage_non_conformes_USA = round(non_conformes_USA / total_prelevements * 100, 2)
   )
 
+# Agréger les résultats par région, année et matrice
+resultats_conformite_matrix <- france_conformite %>%
+  group_by(region, year, matrix) %>%
+  summarise(
+    total_prelevements = n(),
+    non_conformes_France = sum(non_conforme_France, na.rm = TRUE),
+    non_conformes_Danemark = sum(non_conforme_Danemark, na.rm = TRUE),
+    non_conformes_USA = sum(non_conforme_USA, na.rm = TRUE)
+  ) %>%
+  mutate(
+    pourcentage_France = (non_conformes_France / total_prelevements) * 100,
+    pourcentage_Danemark = (non_conformes_Danemark / total_prelevements) * 100,
+    pourcentage_USA = (non_conformes_USA / total_prelevements) * 100
+  )
+
+# Exporter les résultats en CSV
+write_csv(resultats_conformite_matrix, file = "resultat_conformite_matrix.csv")
+
+# Nettoyer l'environnement (optionnel)
 rm(normes)
 rm(substances_concernees)
 rm(france_sommes)

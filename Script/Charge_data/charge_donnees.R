@@ -43,6 +43,7 @@ france <- nettoyer(france)
 resultats_region_annee <- read_csv("../Data/reglementations/resultats_region_annee.csv")
 resultats_region <- read_csv("../Data/reglementations/resultats_region.csv")
 resultats <- read_csv("../Data/reglementations/resultats.csv")
+resultats_conformite_matrix <- read_csv("../Data/reglementations/resultat_conformite_matrix.csv")
 
 
 # On ajoute les regions à france

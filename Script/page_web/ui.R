@@ -21,7 +21,9 @@ ui <- fluidPage(
       plotOutput("combined_plot"),  # Sortie pour le graphique combiné existant
       plotOutput("box_plot"),       # Sortie pour le nouveau graphique en bougies
       plotOutput("france_plot"),    # Nouveau graphique pour la France
-      plotOutput("region_plot")     # Nouveau graphique pour la région sélectionnée
+      plotOutput("region_plot"),    # Nouveau graphique pour la région sélectionnée
+      plotOutput("france_matrix_plot"),  # Nouveau graphique pour la France par matrice
+      plotOutput("region_matrix_plot")   # Nouveau graphique pour la région sélectionnée par matrice
     )
   )
 )

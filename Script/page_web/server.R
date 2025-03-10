@@ -85,32 +85,17 @@ server <- function(input, output) {
   
   # Nouveau graphique pour la France
   output$france_plot <- renderPlot({
-    # Agréger les données pour la France entière
-    france_data <- resultats %>%
-      group_by(year) %>%
-      summarise(
-        total_prelevements = n(),
-        non_conforme_France = sum(non_conformes_France, na.rm = TRUE),
-        non_conforme_Danemark = sum(non_conformes_Danemark, na.rm = TRUE),
-        non_conforme_USA = sum(non_conformes_USA, na.rm = TRUE)
-      ) %>%
-      mutate(
-        pourcentage_France = (non_conforme_France / total_prelevements) * 100,
-        pourcentage_Danemark = (non_conforme_Danemark / total_prelevements) * 100,
-        pourcentage_USA = (non_conforme_USA / total_prelevements) * 100
-      )
-    
     # Convertir les données en format long pour ggplot2
-    france_long <- france_data %>%
+    france_long <- resultats %>%
       pivot_longer(
-        cols = starts_with("pourcentage"),
+        cols = starts_with("pourcentage_non_conformes"),
         names_to = "reglementation",
         values_to = "pourcentage_non_conformes"
       ) %>%
       mutate(reglementation = case_when(
-        reglementation == "pourcentage_France" ~ "France",
-        reglementation == "pourcentage_Danemark" ~ "Danemark",
-        reglementation == "pourcentage_USA" ~ "USA"
+        reglementation == "pourcentage_non_conformes_France" ~ "France",
+        reglementation == "pourcentage_non_conformes_Danemark" ~ "Danemark",
+        reglementation == "pourcentage_non_conformes_USA" ~ "USA"
       ))
     
     # Créer le graphique pour la France
@@ -120,9 +105,10 @@ server <- function(input, output) {
       labs(
         title = "Évolution du pourcentage de prélèvements non conformes en France",
         x = "Année",
-        y = "Pourcentage de prélèvements non conformes",
+        y = "Pourcentage de prélèvements non conformes (%)",
         color = "Réglementation"
       ) +
+      scale_color_manual(values = c("France" = "blue", "Danemark" = "red", "USA" = "green")) +
       theme_minimal() +
       theme(legend.position = "bottom")
   })
@@ -133,21 +119,9 @@ server <- function(input, output) {
     
     region_id <- input$map_shape_click$id
     
-    # Agréger les données pour la région sélectionnée
+    # Filtrer les données pour la région sélectionnée
     region_data <- resultats_region_annee %>%
-      filter(region == region_id) %>%
-      group_by(year) %>%
-      summarise(
-        total_prelevements = n(),
-        non_conforme_France = sum(non_conformes_France, na.rm = TRUE),
-        non_conforme_Danemark = sum(non_conformes_Danemark, na.rm = TRUE),
-        non_conforme_USA = sum(non_conformes_USA, na.rm = TRUE)
-      ) %>%
-      mutate(
-        pourcentage_France = (non_conforme_France / total_prelevements) * 100,
-        pourcentage_Danemark = (non_conforme_Danemark / total_prelevements) * 100,
-        pourcentage_USA = (non_conforme_USA / total_prelevements) * 100
-      )
+      filter(region == region_id)
     
     # Convertir les données en format long pour ggplot2
     region_long <- region_data %>%
@@ -169,9 +143,89 @@ server <- function(input, output) {
       labs(
         title = paste("Évolution du pourcentage de prélèvements non conformes dans", region_id),
         x = "Année",
-        y = "Pourcentage de prélèvements non conformes",
+        y = "Pourcentage de prélèvements non conformes (%)",
         color = "Réglementation"
       ) +
+      scale_color_manual(values = c("France" = "blue", "Danemark" = "red", "USA" = "green")) +
+      theme_minimal() +
+      theme(legend.position = "bottom")
+  })
+  
+  # Nouveau graphique pour la France par matrice
+  output$france_matrix_plot <- renderPlot({
+    # Agréger les données pour la France (toutes régions confondues)
+    france_matrix_data <- resultats_conformite_matrix %>%
+      group_by(year, matrix) %>%
+      summarise(
+        pourcentage_France = mean(pourcentage_France, na.rm = TRUE),
+        pourcentage_Danemark = mean(pourcentage_Danemark, na.rm = TRUE),
+        pourcentage_USA = mean(pourcentage_USA, na.rm = TRUE)
+      )
+    
+    # Convertir les données en format long pour ggplot2
+    france_matrix_long <- france_matrix_data %>%
+      pivot_longer(
+        cols = starts_with("pourcentage"),
+        names_to = "reglementation",
+        values_to = "pourcentage_non_conformes"
+      ) %>%
+      mutate(reglementation = case_when(
+        reglementation == "pourcentage_France" ~ "France",
+        reglementation == "pourcentage_Danemark" ~ "Danemark",
+        reglementation == "pourcentage_USA" ~ "USA"
+      ))
+    
+    # Créer le graphique pour la France par matrice
+    ggplot(france_matrix_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
+      geom_line(size = 1) +
+      geom_point(size = 2) +
+      facet_wrap(~matrix) +  # Un graphique par matrice
+      labs(
+        title = "Évolution du pourcentage de prélèvements non conformes en France par matrice",
+        x = "Année",
+        y = "Pourcentage de prélèvements non conformes (%)",
+        color = "Réglementation"
+      ) +
+      scale_color_manual(values = c("France" = "blue", "Danemark" = "red", "USA" = "green")) +
+      theme_minimal() +
+      theme(legend.position = "bottom")
+  })
+  
+  # Nouveau graphique pour la région sélectionnée par matrice
+  output$region_matrix_plot <- renderPlot({
+    req(input$map_shape_click)
+    
+    region_id <- input$map_shape_click$id
+    
+    # Filtrer les données pour la région sélectionnée
+    region_matrix_data <- resultats_conformite_matrix %>%
+      filter(region == region_id)
+    
+    # Convertir les données en format long pour ggplot2
+    region_matrix_long <- region_matrix_data %>%
+      pivot_longer(
+        cols = starts_with("pourcentage"),
+        names_to = "reglementation",
+        values_to = "pourcentage_non_conformes"
+      ) %>%
+      mutate(reglementation = case_when(
+        reglementation == "pourcentage_France" ~ "France",
+        reglementation == "pourcentage_Danemark" ~ "Danemark",
+        reglementation == "pourcentage_USA" ~ "USA"
+      ))
+    
+    # Créer le graphique pour la région sélectionnée par matrice
+    ggplot(region_matrix_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
+      geom_line(size = 1) +
+      geom_point(size = 2) +
+      facet_wrap(~matrix) +  # Un graphique par matrice
+      labs(
+        title = paste("Évolution du pourcentage de prélèvements non conformes dans", region_id, "par matrice"),
+        x = "Année",
+        y = "Pourcentage de prélèvements non conformes (%)",
+        color = "Réglementation"
+      ) +
+      scale_color_manual(values = c("France" = "blue", "Danemark" = "red", "USA" = "green")) +
       theme_minimal() +
       theme(legend.position = "bottom")
   })
