@@ -33,21 +33,28 @@ complete_lat_lon <- function(df) {
   return(df)
 }
 
-complete_country <- function(df, region) {
+complete_country <- function(df_points) {
   
-  # Filtrer les lignes valides et créer les objets spatiaux
-  df_valid <- df %>% filter(!is.na(lat) & !is.na(lon))
+  # Vérifier s'il y a des valeurs manquantes dans les colonnes lat et lon
+  df_points <- df_points %>%
+    filter(!is.na(lat) & !is.na(lon))  # Supprimer les lignes avec NA
   
-  # Transformer en objet spatial sf pour les lignes valides
-  df_sf <- st_as_sf(df_valid, coords = c("lon", "lat"), crs = 4326)
+  # Filtrer les pays où ADMIN == "France"
+  france_geom <- pays %>%
+    filter(ADMIN == "France") %>%
+    st_geometry()
   
-  # Vérifier si les points sont dans les régions (France)
-  is_in_france <- sapply(st_intersects(df_sf, regions$geom, sparse = FALSE), function(x) any(x))
+  # Créer un objet sf temporaire pour la vérification de l'intersection
+  df_points_sf <- st_as_sf(df_points, coords = c("lon", "lat"), crs = 4326)
   
-  # Mettre à jour la colonne 'country' uniquement pour les lignes valides
-  df$country[!is.na(df$lat) & !is.na(df$lon) & is.na(df$country) & rep(is_in_france, length.out = nrow(df))] <- "France"
+  # Vérifier si chaque point est dans la France et obtenir un vecteur logique
+  is_in_france <- st_intersects(df_points_sf, france_geom, sparse = FALSE)
   
-  return(df)
+  # Remplir la colonne "country" uniquement si elle est NA
+  df_points$country <- ifelse(is.na(df_points$country) & rowSums(is_in_france) > 0, "France", df_points$country)
+  
+  # Retourner le dataframe avec les colonnes lat, lon et country
+  return(df_points)
 }
 
 

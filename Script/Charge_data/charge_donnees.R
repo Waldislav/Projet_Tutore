@@ -1,6 +1,8 @@
 # Chargement des données nécessaire aux traitements 
 
 regions <- st_read("../gadm41_FRA.gpkg", layer = "ADM_ADM_1")
+pays <- st_read("../countries.gpkg")
+pays <- filter(pays, ADMIN == "France")
 villes <- read_csv("../Data/villes.csv")
 
 # Fonctions de traitements
@@ -36,7 +38,7 @@ tfa <- read_csv("../Data/tfa.csv")
 
 france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface_water, tfa)
 france <- complete_lat_lon(france)
-france <- complete_country(france)
+#france <- complete_country(france)
 
 # On filtre toutes les valeurs non significatives
 france <- nettoyer(france)
