@@ -33,20 +33,19 @@ complete_lat_lon <- function(df) {
   return(df)
 }
 
-library(sf)
-
 complete_country <- function(df, region) {
   
+  # Filtrer les lignes valides et créer les objets spatiaux
   df_valid <- df %>% filter(!is.na(lat) & !is.na(lon))
   
-  # Transformer df en objet spatial sf
-  df_sf <- st_as_sf(df_valid, coords = c("lon", "lat"), crs = 4326) # WGS84
+  # Transformer en objet spatial sf pour les lignes valides
+  df_sf <- st_as_sf(df_valid, coords = c("lon", "lat"), crs = 4326)
   
-  # Vérifier si les points sont dans une des régions
-  is_in_france <- sapply(st_intersects(df_sf, regions$geom), function(x) length(x) > 0)
+  # Vérifier si les points sont dans les régions (France)
+  is_in_france <- sapply(st_intersects(df_sf, regions$geom, sparse = FALSE), function(x) any(x))
   
-  # Mettre à jour seulement les country à NA
-  df$country[is.na(df$country) & is_in_france] <- "France"
+  # Mettre à jour la colonne 'country' uniquement pour les lignes valides
+  df$country[!is.na(df$lat) & !is.na(df$lon) & is.na(df$country) & rep(is_in_france, length.out = nrow(df))] <- "France"
   
   return(df)
 }

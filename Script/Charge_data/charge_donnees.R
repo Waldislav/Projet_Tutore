@@ -34,7 +34,7 @@ radiofrance_dw <- read_csv("../Data/radiofrance_dw.csv")
 # 132
 tfa <- read_csv("../Data/tfa.csv")
 
-france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface_water)
+france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface_water, tfa)
 france <- complete_lat_lon(france)
 france <- complete_country(france)
 
