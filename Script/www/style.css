@@ -1,0 +1,103 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    position: relative;
+}
+.banner {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    background-color: rgba(75, 107, 162, 0.5);
+}
+.banner::before {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    filter: blur(8px);
+}
+.banner h1 {
+    font-size: 4.2em;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+.titre {
+    z-index: 2;
+    background-color: rgba(75, 107, 162, 0.5);
+    width: 100%;
+    height: 40%;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.scroll-down {
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+}
+.scroll-down svg {
+    animation: scroll-down 1s infinite;
+}
+.scroll-down svg:hover {
+    animation-play-state: paused;
+    fill: lightblue;
+}
+.scroll-down svg:active {
+    fill: rgb(146, 197, 213);
+}
+.navbar_page {
+    width: 100%;
+    background-color: rgba(75, 107, 162, 1);
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.navbar_page span {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 40px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+.navbar_page span:hover {
+    background-color: #ddd;
+    color: black;
+    cursor: pointer;
+}
+.section {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 2em;
+}

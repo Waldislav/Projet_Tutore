@@ -27,3 +27,4 @@ ggplot(matrix_france, aes(x = matrix, y = pfas_sum, fill = matrix)) +
 
 rm(matrix_france)
 rm(groupe_annee)
+

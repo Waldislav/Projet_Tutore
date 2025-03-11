@@ -24,6 +24,23 @@ server <- function(input, output) {
     create_map(filtered_data())  # Fonction définie dans map_logic.R
   })
   
+  output$cam_pfas_plot <- renderPlot({
+    ggplot(pfas_group_filtre, aes(x = "", y = total_value, fill = substance)) +
+      geom_bar(stat = "identity", width = 1) +
+      coord_polar(theta = "y") +
+      theme_void() +
+      geom_text(aes(label = ""), position = position_stack(vjust = 0.5)) +
+      scale_fill_manual(
+        values = RColorBrewer::brewer.pal(length(unique(pfas_group_filtre$substance)), "Set3"),
+        labels = paste0(pfas_group_filtre$substance, " (", round(pfas_group_filtre$percentage, 1), "%)")
+      ) +
+      guides(fill = guide_legend(title = "Substance",
+                                 title.position = "top",
+                                 label.position = "right",
+                                 label.theme = element_text(size = 10),
+                                 title.hjust = 0.5))
+  })
+  
   # Graphique combiné existant
   output$combined_plot <- renderPlot({
     req(input$map_shape_click)

@@ -1,7 +1,7 @@
 # Chargement des données nécessaire aux traitements 
 
 regions <- st_read("../gadm41_FRA.gpkg", layer = "ADM_ADM_1")
-#villes <- read_csv("../Data/villes.csv")
+villes <- read_csv("../Data/villes.csv")
 
 # Fonctions de traitements
 source("Charge_data/fonctions_filtre.R")
@@ -32,10 +32,11 @@ eaurob <- read_csv("../Data/france_eaurob.csv")
 # 131
 radiofrance_dw <- read_csv("../Data/radiofrance_dw.csv")
 # 132
-#tfa <- read_csv("../Data/tfa.csv")
+tfa <- read_csv("../Data/tfa.csv")
 
 france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface_water)
-#france <- complete_lat_lon(france)
+france <- complete_lat_lon(france)
+france <- complete_country(france)
 
 # On filtre toutes les valeurs non significatives
 france <- nettoyer(france)
@@ -57,4 +58,4 @@ rm(rhine)
 rm(eaurob)
 rm(radiofrance_dw)
 rm(surface_water)
-#rm(tfa)
+rm(tfa)
