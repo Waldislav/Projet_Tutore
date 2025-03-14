@@ -12,7 +12,15 @@ ui <- page_fluid(
     class = "section",
     titlePanel("Analyse globale"),
     tags$p("Ici nous avons notre répartition de pfas"),
+    card(
+      card_header("Évolution de toutes les substances"),
+      plotOutput("evo_substance")
+    ),
     layout_columns(
+      card(
+        card_header("Répartition des PFAS par région"),
+        plotOutput("val_total_pfas_region")
+      ),
       card(
         card_header("Répartition des PFAS"),
         plotOutput("cam_pfas_plot")  # Ajout du plot ici

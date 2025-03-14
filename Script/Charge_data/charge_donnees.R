@@ -48,6 +48,13 @@ resultats_region <- read_csv("../Data/reglementations/resultats_region.csv")
 resultats <- read_csv("../Data/reglementations/resultats.csv")
 resultats_conformite_matrix <- read_csv("../Data/reglementations/resultat_conformite_matrix.csv")
 
+year_counts <- as.data.frame(table(france$year))
+colnames(year_counts) <- c("year", "count")
+
+year_counts$year <- as.numeric(as.character(year_counts$year))
+
+groupe_annee <- aggregate(pfas_sum ~ year, data = france, FUN = sum)
+matrix_france <- aggregate(pfas_sum ~ matrix, data = france, FUN = sum)
 
 # On ajoute les regions à france
 source("Charge_data/regions.R")

@@ -41,6 +41,55 @@ server <- function(input, output) {
                                  title.hjust = 0.5))
   })
   
+  output$val_total_pfas_region <- renderPlot({
+    ggplot(regions_sum_pfas, aes(x = reorder(region, total_value), y = total_value)) +
+      geom_bar(stat = "identity", fill = "skyblue") +
+      coord_flip() +
+      labs(x = "Région", y = "Valeur Totale des PFAS", 
+           title = "Valeur Totale des PFAS par Région") +
+      theme_minimal() +
+      # Ajouter les totaux de producteurs et utilisateurs au bout de chaque barre
+      geom_text(aes(label = nb_producteur), position = position_stack(vjust = 1.05), 
+                color = "black", size = 3) +
+      geom_text(aes(label = nb_utilisateurs), position = position_stack(vjust = 1.2), 
+                color = "red", size = 3)  # Les utilisateurs en rouge, producteurs en noir
+  })
+  
+  output$evo_substance <- renderPlot({
+    ggplot() +
+      geom_line(data = year_counts %>% filter(year < max(year_counts$year)), 
+                aes(x = year, y = count), color = "steelblue", size = 1) +
+      geom_point(data = year_counts %>% filter(year < max(year_counts$year)), 
+                 aes(x = year, y = count), color = "steelblue", size = 2) +
+      geom_line(data = groupe_annee %>% filter(year < max(groupe_annee$year)), 
+                aes(x = year, y = pfas_sum * max(year_counts$count) / max(groupe_annee$pfas_sum)), 
+                color = "red", size = 1.2) +
+      geom_point(data = groupe_annee %>% filter(year < max(groupe_annee$year)), 
+                 aes(x = year, y = pfas_sum * max(year_counts$count) / max(groupe_annee$pfas_sum)), 
+                 color = "red", size = 2) +
+      scale_y_continuous(
+        name = "Nombre de prélèvements",
+        sec.axis = sec_axis(~ . * max(groupe_annee$pfas_sum) / max(year_counts$count), name = "Somme des PFAS")
+      ) +
+      scale_x_continuous(breaks = seq(min(year_counts$year), max(year_counts$year) - 1, by = 2)) +
+      labs(title = "Nombre de prélèvements par année et évolution de la quantité de PFAS détectés", x = "Année") +
+      theme_minimal() +
+      theme(
+        axis.title.y = element_text(color = "steelblue", size = 12),  
+        axis.title.y.right = element_text(color = "red", size = 12)  
+      )
+  })
+  
+  output$france_matrix <- renderPlot({
+    ggplot(matrix_france, aes(x = matrix, y = pfas_sum, fill = matrix)) +
+      geom_bar(stat = "identity", show.legend = FALSE) +  # Utiliser des barres avec les valeurs de pfas_sum
+      labs(title = "La quantité de PFAS détectés par milieux", 
+           x = "Matrix", 
+           y = "Somme des PFAS") +
+      theme_minimal() +  # Thème minimal pour le graphique
+      scale_fill_brewer(palette = "Set1")  # Palette de couleurs agréables
+  })
+  
   # Graphique combiné existant
   output$combined_plot <- renderPlot({
     req(input$map_shape_click)
