@@ -17,13 +17,15 @@ ggplot(groupe_annee, aes(x = year, y = pfas_sum)) +
 # Regroupe le total des pfas par milieux
 matrix_france <- aggregate(pfas_sum ~ matrix, data = france, FUN = sum)
 
-ggplot(matrix_france, aes(x = matrix, y = pfas_sum, fill = matrix)) +
-  geom_bar(stat = "identity", show.legend = FALSE) +  # Utiliser des barres avec les valeurs de pfas_sum
-  labs(title = "La quantité de PFAS détectés par milieux", 
-       x = "Matrix", 
-       y = "Somme des PFAS") +
-  theme_minimal() +  # Thème minimal pour le graphique
-  scale_fill_brewer(palette = "Set1")  # Palette de couleurs agréables
+ggplot(france, aes(x = matrix, fill = matrix)) +
+  geom_bar(show.legend = FALSE) +  # Compte les occurrences de chaque "matrix"
+  labs(title = "Nombre d'occurrences de chaque milieu",       
+       x = "Matrix",       
+       y = "Nombre d'occurrences") +
+  theme_minimal() +  
+  scale_fill_brewer(palette = "Set1") +  
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1)))  # Évite l'écrasement visuel en ajoutant un léger espace en haut
+
 
 rm(matrix_france)
 rm(groupe_annee)

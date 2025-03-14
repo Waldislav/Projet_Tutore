@@ -1,9 +1,7 @@
-# Parsing des données
-france <- france %>% 
-  rowwise() %>%
-  rowid_to_column() %>%
-  #mutate(pfas_values = list(fromJSON(pfas_values))) %>%
-  ungroup()
+# Tous les prélévements fait en France
+france <- france %>%
+  filter(pfas_sum != 0) %>%
+  rowid_to_column()
 
 # Récupère tout le tableau de pfas_values
 restmp <- france %>%
@@ -11,17 +9,14 @@ restmp <- france %>%
   mutate(parsed_values = list(fromJSON(pfas_values))) %>%
   unnest(parsed_values, names_sep = "_") %>%             
   filter(!is.null(parsed_values_value)) %>%
-  mutate(rowid = rowid, 
-         parsed_values_value = as.numeric(parsed_values_value),
+  mutate(parsed_values_value = as.numeric(parsed_values_value),
          parsed_values_less_than = as.numeric(parsed_values_less_than)) %>% 
-  select(rowid, region, city, date, year, lat, lon, matrix, starts_with("parsed_values_")) %>%
+  select(rowid, region, city, matrix, date, year, lat, lon, starts_with("parsed_values_")) %>%
   rename_with(~ gsub("^parsed_values_", "", .), starts_with("parsed_values_"))
-
 restmp <- as.data.frame(restmp)
 
-# Tableau de pfas avec une valeur significative
-pfas <- restmp[!is.na(restmp$value), ] %>%
-  mutate(value = as.numeric(value))
+# Tous les pfas avec une valeur significative
+pfas <- restmp[!is.na(restmp$value)]
 
 # Groupe les pfas entre eux et y ajoute un pourcentage de répartition
 pfas_group <- pfas %>%
