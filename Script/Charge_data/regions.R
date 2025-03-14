@@ -1,9 +1,9 @@
 # Charger les données géographiques des régions françaises depuis ADM_ADM_1
-france_regions_sf <- st_read("../gadm41_FRA.gpkg", layer = "ADM_ADM_1")
+france_regions_sf <- st_read("../regions.gpkg")
 
 # Simplifier le jeu de données des régions en ne gardant que le nom et la géométrie
 france_regions_sf <- france_regions_sf %>% 
-  select(REGION_NAME = NAME_1, geom)
+  select(REGION_NAME = nom, geom)
 
 # Sauvegarder les coordonnées avant la conversion en sf
 lat_lon_coords <- france %>% 

@@ -32,6 +32,8 @@ resultats_region_annee <- france_conformite %>%
 
 # Exporter les résultats en CSV
 write_csv(resultats_region_annee, file = "resultats_region_annee.csv")
+write_csv(resultats_region, file = "resultats_region.csv")
+
 
 rm(resultats_region)
 rm(resultats_region_annee)

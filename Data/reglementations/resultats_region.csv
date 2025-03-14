@@ -1,15 +1,19 @@
 region,total_prelevements,non_conformes_France,pourcentage_non_conformes_France,non_conformes_Danemark,pourcentage_non_conformes_Danemark,non_conformes_USA,pourcentage_non_conformes_USA
-Auvergne-Rhône-Alpes,6078,1767,29.07,1704,28.04,324,5.33
-Bourgogne-Franche-Comté,3714,536,14.43,499,13.44,125,3.37
-Bretagne,1293,202,15.62,188,14.54,63,4.87
-Centre-Val de Loire,2709,256,9.45,200,7.38,68,2.51
+Auvergne-Rhône-Alpes,6278,1833,29.2,1764,28.1,326,5.19
+Bourgogne-Franche-Comté,3753,556,14.81,515,13.72,125,3.33
+Bretagne,1294,202,15.61,188,14.53,63,4.87
+Centre-Val de Loire,2766,271,9.8,216,7.81,71,2.57
 Corse,57,21,36.84,20,35.09,1,1.75
-Grand Est,12750,2056,16.13,1628,12.77,99,0.78
-Hauts-de-France,5518,723,13.1,479,8.68,31,0.56
-Normandie,5764,309,5.36,218,3.78,46,0.8
-Nouvelle-Aquitaine,2204,726,32.94,561,25.45,203,9.21
-Occitanie,3306,553,16.73,582,17.6,248,7.5
-Pays de la Loire,1920,327,17.03,290,15.1,73,3.8
-Provence-Alpes-Côte d'Azur,2378,352,14.8,350,14.72,77,3.24
-Île-de-France,6889,384,5.57,336,4.88,59,0.86
-NA,2807,235,8.37,174,6.2,6,0.21
+Grand Est,12861,2062,16.03,1634,12.71,99,0.77
+Guadeloupe,6,5,83.33,4,66.67,0,0
+Guyane,10,7,70,4,40,0,0
+Hauts-de-France,5487,736,13.41,491,8.95,31,0.56
+La Réunion,354,180,50.85,135,38.14,0,0
+Martinique,40,24,60,13,32.5,2,5
+Normandie,5791,312,5.39,221,3.82,46,0.79
+Nouvelle-Aquitaine,2198,729,33.17,564,25.66,202,9.19
+Occitanie,3332,559,16.78,588,17.65,248,7.44
+Pays de la Loire,1934,327,16.91,290,14.99,73,3.77
+Provence-Alpes-Côte d'Azur,2394,358,14.95,354,14.79,77,3.22
+Île-de-France,7003,392,5.6,344,4.91,59,0.84
+NA,510,2,0.39,4,0.78,4,0.78

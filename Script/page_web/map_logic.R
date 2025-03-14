@@ -3,7 +3,7 @@ create_map <- function(data) {
     addTiles() %>%
     addPolygons(
       data = regions,
-      layerId = ~NAME_1,
+      layerId = ~nom,
       fillColor = "transparent",
       color = "white",
       weight = 2,
@@ -21,6 +21,7 @@ create_map <- function(data) {
       fillColor = "red",
       opacity = ~rescale(value, to = c(0.1, 1)),
       popup = ~paste(
+        "ID :", rowid, "<br>",
         "Région:", region, "<br>",
         "Ville:", city, "<br>",
         "Substance:", substance, "<br>",

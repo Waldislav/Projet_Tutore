@@ -16,9 +16,9 @@ utilisateurs_by_region <- user %>%
 
 # Joindre les statistiques des producteurs et utilisateurs à france_regions_sf_by_year
 regions_by_year <- regions %>%
-  left_join(pfas_stats_by_year, by = c("NAME_1" = "region")) %>%
-  left_join(producteurs_by_region, by = c("NAME_1" = "region")) %>%
-  left_join(utilisateurs_by_region, by = c("NAME_1" = "region"))
+  left_join(pfas_stats_by_year, by = c("nom" = "region")) %>%
+  left_join(producteurs_by_region, by = c("nom" = "region")) %>%
+  left_join(utilisateurs_by_region, by = c("nom" = "region"))
 
 pfas_stats <- pfas %>%
   group_by(region) %>%
@@ -29,9 +29,9 @@ pfas_stats <- pfas %>%
 
 # Ajouter les statistiques à la table france_regions_sf
 regions <- regions %>%
-  left_join(pfas_stats, by = c("NAME_1" = "region")) %>%
-  left_join(producteurs_by_region, by = c("NAME_1" = "region")) %>%
-  left_join(utilisateurs_by_region, by = c("NAME_1" = "region"))
+  left_join(pfas_stats, by = c("nom" = "region")) %>%
+  left_join(producteurs_by_region, by = c("nom" = "region")) %>%
+  left_join(utilisateurs_by_region, by = c("nom" = "region"))
 
 rm(pfas_stats)
 rm(pfas_stats_by_year)

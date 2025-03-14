@@ -91,7 +91,7 @@ resultats <- france_conformite %>%
     pourcentage_non_conformes_Danemark = round(non_conformes_Danemark / total_prelevements * 100, 2),
     non_conformes_USA = sum(non_conforme_USA, na.rm = TRUE),
     pourcentage_non_conformes_USA = round(non_conformes_USA / total_prelevements * 100, 2)
-  )
+)
 
 # Agréger les résultats par région, année et matrice
 resultats_conformite_matrix <- france_conformite %>%
@@ -110,6 +110,7 @@ resultats_conformite_matrix <- france_conformite %>%
 
 # Exporter les résultats en CSV
 write_csv(resultats_conformite_matrix, file = "resultat_conformite_matrix.csv")
+write_csv(resultats, file = "resultats.csv")
 
 # Nettoyer l'environnement (optionnel)
 rm(normes)

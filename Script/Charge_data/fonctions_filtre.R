@@ -34,26 +34,19 @@ complete_lat_lon <- function(df) {
 }
 
 complete_country <- function(df_points) {
-  
   # Vérifier s'il y a des valeurs manquantes dans les colonnes lat et lon
   df_points <- df_points %>%
     filter(!is.na(lat) & !is.na(lon))  # Supprimer les lignes avec NA
   
-  # Filtrer les pays où ADMIN == "France"
-  france_geom <- pays %>%
-    filter(ADMIN == "France") %>%
-    st_geometry()
+  # Convertir les points en objet sf
+  points_sf <- st_as_sf(df_points, coords = c("lon", "lat"), crs = 4326)
   
-  # Créer un objet sf temporaire pour la vérification de l'intersection
-  df_points_sf <- st_as_sf(df_points, coords = c("lon", "lat"), crs = 4326)
+  # Vérifier l'intersection entre les points et les régions
+  is_in_region <- st_within(points_sf, regions$geom, sparse = FALSE)
   
-  # Vérifier si chaque point est dans la France et obtenir un vecteur logique
-  is_in_france <- st_intersects(df_points_sf, france_geom, sparse = FALSE)
+  # Ajouter la colonne country
+  df_points$country <- ifelse(rowSums(is_in_region) > 0, "France", ifelse(df_points$source_text == "Naiades", "France", NA))
   
-  # Remplir la colonne "country" uniquement si elle est NA
-  df_points$country <- ifelse(is.na(df_points$country) & rowSums(is_in_france) > 0, "France", df_points$country)
-  
-  # Retourner le dataframe avec les colonnes lat, lon et country
   return(df_points)
 }
 

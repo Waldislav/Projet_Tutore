@@ -232,6 +232,9 @@ server <- function(input, output) {
       ))
     
     # Créer le graphique pour la région sélectionnée par matrice
+    if (nrow(region_matrix_long) == 0) {
+      return(ggplot() + labs(title = "Aucune donnée disponible pour cette région"))
+    } else 
     ggplot(region_matrix_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
       geom_line(size = 1) +
       geom_point(size = 2) +
@@ -255,10 +258,10 @@ server <- function(input, output) {
     
     if (input$ignore_year) {
       region_data <- regions %>%
-        filter(NAME_1 == region_id)
+        filter(nom == region_id)
     } else {
       region_data <- regions_by_year %>%
-        filter(NAME_1 == region_id, year == selected_year)
+        filter(nom == region_id, year == selected_year)
     }
     
     if (nrow(region_data) == 0) {
@@ -268,7 +271,7 @@ server <- function(input, output) {
       )
     } else {
       paste(
-        "<b>Région sélectionnée :</b>", region_data$NAME_1, "<br>",
+        "<b>Région sélectionnée :</b>", region_data$nom, "<br>",
         "<b>Nombre de PFAS :</b>", region_data$nb_pfas, "<br>",
         "<b>Somme des valeurs des PFAS :</b> ", region_data$sum_pfas, "<br>",
         "<b>Nombre de producteurs :</b> ", region_data$nb_producteur, "<br>",
