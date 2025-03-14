@@ -63,6 +63,38 @@ regions_sum_pfas <- regions_sum_pfas %>%
   left_join(producteur_count, by = c("region" = "region")) %>%
   left_join(utilisateur_count, by = c("region" = "region"))
 
+library(data.table)
+setDT(pfas)
+
+
+generate_row_dt <- function(row, pfas) {
+  pfas_filtered <- pfas[rowid == row$rowid]
+  
+  if (nrow(pfas_filtered) == 0) {
+    return("Aucune donnée PFAS")
+  }
+  
+  paste0(
+    "<table border='1' style='border-collapse: collapse; width: 100%;'>",
+    "<tr><th>Substance</th><th>Valeur</th></tr>",
+    paste0(
+      "<tr><td>", 
+      ifelse(pfas_filtered$substance == row$substance, 
+             paste0("<strong>", pfas_filtered$substance, "</strong>"), 
+             pfas_filtered$substance),
+      "</td><td>", 
+      pfas_filtered$value, 
+      pfas_filtered$unit, 
+      "</td></tr>", collapse = ""
+    ),
+    "</table>"
+  )
+}
+
+# Appliquer la génération de tableau pour chaque ligne
+pfas[, tableau := purrr::map_chr(.I, function(i) generate_row_dt(pfas[i, ], pfas))]
+
+
 # Tableau temporaire, on le supprime pour ne pas surcharger
 rm(producteur_count)
 rm(utilisateur_count)

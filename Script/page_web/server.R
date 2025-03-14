@@ -2,6 +2,24 @@
 source("page_web/map_logic.R")
 source("page_web/plot_logic.R")
 
+generate_pfas_table <- function(rowid) {
+  pfas_filtered <- pfas %>% filter(rowid == !!rowid)  # Sélectionner les pfas correspondant au rowid
+  
+  if (nrow(pfas_filtered) == 0) {
+    return("Aucune donnée PFAS")
+  }
+  
+  table_html <- paste0(
+    "<table border='1' style='border-collapse: collapse; width: 100%;'>",
+    "<tr><th>Substance</th><th>Valeur</th></tr>",
+    paste0("<tr><td>", pfas_filtered$substance, "</td><td>", pfas_filtered$value,pfas_filtered$unit, "</td></tr>", collapse = ""),
+    "</table>"
+  )
+  
+  return(table_html)
+}
+
+
 server <- function(input, output) {
   # Données filtrées pour la carte
   filtered_data <- reactive({
@@ -17,11 +35,15 @@ server <- function(input, output) {
              !is.na(lat),
              !is.na(lon),
              !is.na(value))
+    
+    #data <- data %>%
+    #  rowwise() %>%
+    #  mutate(pfas_table = generate_pfas_table(rowid))
   })
   
   # Carte Leaflet
   output$map <- renderLeaflet({
-    create_map(filtered_data())  # Fonction définie dans map_logic.R
+    create_map(input,filtered_data())  # Fonction définie dans map_logic.R
   })
   
   output$cam_pfas_plot <- renderPlot({

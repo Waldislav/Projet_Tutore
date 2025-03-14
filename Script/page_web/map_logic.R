@@ -1,39 +1,43 @@
-create_map <- function(data) {
+create_map <- function(input, data) {
   leaflet(data) %>%
     addTiles() %>%
     addPolygons(
       data = regions,
-      layerId = ~nom,
-      fillColor = "transparent",
-      color = "white",
-      weight = 2,
-      fillOpacity = 0.0,
+      layerId = ~nom,  # Identifier les polygones par leur nom
+      fillColor = "transparent", # Couleur initiale (transparent)
+      color = "white",    # Couleur de la bordure
+      weight = 2,         # Épaisseur de la bordure
+      fillOpacity = 0.0,  # Opacité initiale
       highlightOptions = highlightOptions(
-        weight = 3,
-        color = "blue",
-        fillColor = "blue",
-        fillOpacity = 0.2
+        weight = 3,       # Épaissir la bordure au survol
+        color = "blue",   # Bordure bleue au survol
+        fillColor = "blue", # Remplissage bleu au survol
+        fillOpacity = 0.2  # Opacité plus élevée au survol # Mettre la forme au premier plan
       )
     ) %>%
     addCircleMarkers(
+      data = data,
       ~lon, ~lat,
-      color = ~substance,
-      fillColor = "red",
-      opacity = ~rescale(value, to = c(0.1, 1)),
+      color = "black",
+      opacity = 1,
+      weight = 1,
+      fillColor = "orange",#~ifelse(pfas_sum >= 100, "red", "orange"),
+      fillOpacity = 1,
+      radius = 5,
       popup = ~paste(
-        "ID :", rowid, "<br>",
         "Région:", region, "<br>",
         "Ville:", city, "<br>",
-        "Substance:", substance, "<br>",
-        "Valeur PFAS:", value, "<br>",
-        "Année:", year
+        #"Substance:", substance, "<br>",
+        #"Sommes pfas:", pfas_sum, "<br>",
+        "Année:", year, "<br>",
+        tableau
       )
     ) %>%
     addCircleMarkers(
       data = user,
       ~lon, ~lat,
       color = "grey",
-      radius = 5,
+      radius = 3,
       fillColor = "grey",
       fillOpacity = 1,
       popup = ~paste("Utilisateur : ", name)
@@ -42,7 +46,7 @@ create_map <- function(data) {
       data = producteur,
       ~lon, ~lat,
       color = "black",
-      radius = 5,
+      radius = 3,
       fillColor = "black",
       fillOpacity = 1,
       popup = ~paste("Producteur : ", name)
