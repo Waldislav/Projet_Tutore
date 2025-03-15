@@ -6,12 +6,14 @@ library(purrr)
 # Définir les normes PFAS réelles pour chaque pays et type de matrice
 normes <- list(
   France = list(
-    Biota = 1000,  # Exemple de norme pour Biota (en ng/kg)
-    Groundwater = 0.65,  # 0,65 ng/L pour les eaux souterraines (valeur guide pour PFOS)
-    Sediment = 1000,  # Exemple de norme pour les sédiments (en ng/kg)
-    Surface_water = 0.65,  # 0,65 ng/L pour les eaux de surface (valeur guide pour PFOS)
-    Drinking_water = 100  #  pour les eaux potables (norme UE)
+    Biota = 1000,  # Pas de norme spécifique pour le biote en France
+    Groundwater = 1000,  # Pas de norme spécifique pour les eaux souterraines en France
+    Sediment = 1000,  # Pas de norme spécifique pour les sédiments en France
+    Surface_water = 0.65,  # Norme de qualité environnementale pour le PFOS dans les eaux de surface
+    Drinking_water = 100  # Limite de qualité pour la somme de 20 PFAS dans l'eau potable
   ),
+  
+  
   Danemark = list(
     Biota = 2,  # 2 ng/kg pour Biota
     Groundwater = 2,  # 2 ng/L pour les eaux souterraines

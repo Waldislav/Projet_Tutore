@@ -58,3 +58,5 @@ Classeur/france.csv
 Data/*.csv
 
 .DS_Store
+Script/france_norme.csv
+Script/norme_france.csv
