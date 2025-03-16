@@ -33,7 +33,11 @@ ui <- page_fluid(
     sidebarLayout(
       sidebarPanel(
         selectInput("substance", "Choisir une substance :",
-                    choices = unique(pfas$substance)),
+                    c("Tous", unique(pfas$substance))),
+        selectInput("matrix", "Choisir une milieu :",
+                    c("Tous", unique(pfas$matrix))),
+        selectInput("regle", "Choisir une réglementation :",
+                    c("France", "USA", "Danemark")),
         sliderInput("year", "Année :",
                     min = min(pfas$year, na.rm = TRUE),
                     max = max(pfas$year, na.rm = TRUE),

@@ -1,3 +1,14 @@
+library(tidyverse)
+library(jsonlite)
+library(dplyr)
+library(sf)
+library(ggplot2)
+library(RColorBrewer)
+
+setwd("C:/Users/Ronan/Documents/GitHub/Projet_Tutore/Script")
+#setwd("/Users/waldislav/Fac/Cours/M2/Projet\ Tutorés/Projet_Tutore/Script")
+#setwd("C://Users/ronan/Documents/Cours/Projet_Tutore-main/Projet_Tutore-main/Script")
+
 france <- read_csv("../Data/reglementations/france.csv")
 france_conformite <- read_csv("../Data/reglementations/france_conformite.csv")
 france_norme <- read_csv("../Data/reglementations/france_norme.csv")

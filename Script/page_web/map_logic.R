@@ -1,3 +1,6 @@
+library(htmlwidgets)
+
+
 addLegendCustom <- function(map, position = "bottomright", colors, labels, sizes) {
   legend_html <- paste0(
     "<div style='background-color: white; padding: 5px; border-radius: 5px;'>",
@@ -20,7 +23,7 @@ addLegendCustom <- function(map, position = "bottomright", colors, labels, sizes
   return(addControl(map, HTML(legend_html), position = position))
 }
 
-create_map <- function(input, data) {
+create_map <- function(input, data, regle) {
   leaflet(data) %>%
     addTiles() %>%
     addPolygons(
@@ -43,10 +46,15 @@ create_map <- function(input, data) {
       color = "black",
       opacity = 1,
       weight = 1,
-      fillColor = "orange",#~ifelse(pfas_sum >= 100, "red", "orange"),
+      fillColor = ~ifelse(
+        regle == "France" & non_conforme_France == TRUE, "red",  # Si "France" et non conforme, rouge
+        ifelse(regle == "USA" & non_conforme_USA == TRUE, "red",  # Si "USA" et non conforme, rouge
+               ifelse(regle == "Danemark" & non_conforme_Danemark == TRUE, "red", "orange"))),
       fillOpacity = 1,
       radius = 5,
       popup = ~paste(
+        "Id :", rowid, "<br>",
+        "Milieu :", matrix, "<br>",
         "Région:", region, "<br>",
         "Ville:", city, "<br>",
         #"Substance:", substance, "<br>",
@@ -78,7 +86,30 @@ create_map <- function(input, data) {
       colors = c("orange", "red", "grey", "black"),
       labels = c("Prélévement conforme","Prélévement non conforme", "Utilisateur", "Producteur"),
       sizes = c(10, 10, 10, 10) # Taille des cercles
-    )
+    ) %>%
+    # Injecter du JS pour charger Turf.js et filtrer les points
+    onRender("
+      function(el, x) {
+        // Charger Turf.js
+        var script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js';
+        script.onload = function() {
+          console.log('Turf.js chargé !');
+          
+          // Exemple : Filtrer les points à moins de 10 km d'un centre donné
+          var center = turf.point([2.3522, 48.8566]); // Paris
+          var radius = 10; // 10 km
+          
+          var filtered = x.x.data.filter(function(d) {
+            var point = turf.point([d.lon, d.lat]);
+            return turf.distance(center, point, {units: 'kilometers'}) <= radius;
+          });
+
+          console.log('Points après filtrage:', filtered.length);
+        };
+        document.head.appendChild(script);
+      }
+    ")
 }
 
 

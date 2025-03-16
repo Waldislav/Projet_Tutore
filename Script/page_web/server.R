@@ -30,11 +30,23 @@ server <- function(input, output) {
         filter(year == input$year)
     }
     
-    data %>%
-      filter(substance == input$substance,
-             !is.na(lat),
+    data <- data%>%
+      filter(!is.na(lat),
              !is.na(lon),
              !is.na(value))
+    
+    if(input$substance != "Tous") {
+      data <- data %>%
+        filter(substance == input$substance)
+    }
+    
+    if(input$matrix != "Tous") {
+      data <- data %>%
+        filter(matrix == input$matrix)
+    }
+    
+    return(data)
+    
     
     #data <- data %>%
     #  rowwise() %>%
@@ -43,7 +55,7 @@ server <- function(input, output) {
   
   # Carte Leaflet
   output$map <- renderLeaflet({
-    create_map(input,filtered_data())  # Fonction définie dans map_logic.R
+    create_map(input,filtered_data(), input$regle)  # Fonction définie dans map_logic.R
   })
   
   output$cam_pfas_plot <- renderPlot({
