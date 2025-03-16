@@ -54,65 +54,9 @@ calculer_somme_substances <- function(pfas_values, substances) {
   return(somme)
 }
 
-# Créer un nouveau dataframe pour les sommes des substances
-france_sommes <- france %>%
-  mutate(
-    somme_France = map_dbl(pfas_values, ~ calculer_somme_substances(.x, substances_concernees$France)),
-    somme_Danemark = map_dbl(pfas_values, ~ calculer_somme_substances(.x, substances_concernees$Danemark)),
-    somme_USA = map_dbl(pfas_values, ~ calculer_somme_substances(.x, substances_concernees$USA))
-  )
 
-# Fonction pour vérifier si un prélèvement dépasse les normes
-verifier_normes <- function(somme, matrix, country) {
-  # Vérifier si la matrice existe dans les normes du pays
-  if (matrix %in% names(normes[[country]])) {
-    norme <- normes[[country]][[matrix]]
-    return(somme > norme)
-  } else {
-    # Retourner FALSE si la matrice n'est pas trouvée
-    return(FALSE)
-  }
-}
 
-# Créer un nouveau dataframe pour les vérifications de conformité
-france_conformite <- france_sommes %>%
-  mutate(
-    non_conforme_France = map2_lgl(somme_France, matrix, ~ verifier_normes(.x, .y, "France")),
-    non_conforme_Danemark = map2_lgl(somme_Danemark, matrix, ~ verifier_normes(.x, .y, "Danemark")),
-    non_conforme_USA = map2_lgl(somme_USA, matrix, ~ verifier_normes(.x, .y, "USA"))
-  )
 
-# Créer un nouveau dataframe pour les résultats agrégés
-resultats <- france_conformite %>%
-  group_by(year) %>%
-  summarise(
-    total_prelevements = n(),
-    non_conformes_France = sum(non_conforme_France, na.rm = TRUE),
-    pourcentage_non_conformes_France = round(non_conformes_France / total_prelevements * 100, 2),
-    non_conformes_Danemark = sum(non_conforme_Danemark, na.rm = TRUE),
-    pourcentage_non_conformes_Danemark = round(non_conformes_Danemark / total_prelevements * 100, 2),
-    non_conformes_USA = sum(non_conforme_USA, na.rm = TRUE),
-    pourcentage_non_conformes_USA = round(non_conformes_USA / total_prelevements * 100, 2)
-)
-
-# Agréger les résultats par région, année et matrice
-resultats_conformite_matrix <- france_conformite %>%
-  group_by(region, year, matrix) %>%
-  summarise(
-    total_prelevements = n(),
-    non_conformes_France = sum(non_conforme_France, na.rm = TRUE),
-    non_conformes_Danemark = sum(non_conforme_Danemark, na.rm = TRUE),
-    non_conformes_USA = sum(non_conforme_USA, na.rm = TRUE)
-  ) %>%
-  mutate(
-    pourcentage_France = (non_conformes_France / total_prelevements) * 100,
-    pourcentage_Danemark = (non_conformes_Danemark / total_prelevements) * 100,
-    pourcentage_USA = (non_conformes_USA / total_prelevements) * 100
-  )
-
-# Exporter les résultats en CSV
-write_csv(resultats_conformite_matrix, file = "resultat_conformite_matrix.csv")
-write_csv(resultats, file = "resultats.csv")
 
 source("Analyses/vraies_normes.R")
 

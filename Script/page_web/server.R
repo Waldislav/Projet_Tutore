@@ -193,9 +193,9 @@ server <- function(input, output) {
         values_to = "pourcentage_non_conformes"
       ) %>%
       mutate(reglementation = case_when(
-        reglementation == "pourcentage_non_conformes_France" ~ "France",
-        reglementation == "pourcentage_non_conformes_Danemark" ~ "Danemark",
-        reglementation == "pourcentage_non_conformes_USA" ~ "USA"
+        reglementation == "pourcentage_non_conformes_france" ~ "France",
+        reglementation == "pourcentage_non_conformes_danemark" ~ "Danemark",
+        reglementation == "pourcentage_non_conformes_usa" ~ "USA"
       ))
     
     # Créer le graphique pour la France
@@ -254,12 +254,12 @@ server <- function(input, output) {
   # Nouveau graphique pour la France par matrice
   output$france_matrix_plot <- renderPlot({
     # Agréger les données pour la France (toutes régions confondues)
-    france_matrix_data <- resultats_conformite_matrix %>%
+    france_matrix_data <- resultat_conformite_matrix %>%
       group_by(year, matrix) %>%
       summarise(
-        pourcentage_France = mean(pourcentage_France, na.rm = TRUE),
-        pourcentage_Danemark = mean(pourcentage_Danemark, na.rm = TRUE),
-        pourcentage_USA = mean(pourcentage_USA, na.rm = TRUE)
+        pourcentage_france = mean(pourcentage_france, na.rm = TRUE),
+        pourcentage_danemark = mean(pourcentage_danemark, na.rm = TRUE),
+        pourcentage_usa = mean(pourcentage_usa, na.rm = TRUE)
       )
     
     # Convertir les données en format long pour ggplot2
@@ -270,9 +270,9 @@ server <- function(input, output) {
         values_to = "pourcentage_non_conformes"
       ) %>%
       mutate(reglementation = case_when(
-        reglementation == "pourcentage_France" ~ "France",
-        reglementation == "pourcentage_Danemark" ~ "Danemark",
-        reglementation == "pourcentage_USA" ~ "USA"
+        reglementation == "pourcentage_france" ~ "France",
+        reglementation == "pourcentage_danemark" ~ "Danemark",
+        reglementation == "pourcentage_usa" ~ "USA"
       ))
     
     # Créer le graphique pour la France par matrice
@@ -298,7 +298,7 @@ server <- function(input, output) {
     region_id <- input$map_shape_click$id
     
     # Filtrer les données pour la région sélectionnée
-    region_matrix_data <- resultats_conformite_matrix %>%
+    region_matrix_data <- resultat_conformite_matrix %>%
       filter(region == region_id)
     
     # Convertir les données en format long pour ggplot2
@@ -309,15 +309,17 @@ server <- function(input, output) {
         values_to = "pourcentage_non_conformes"
       ) %>%
       mutate(reglementation = case_when(
-        reglementation == "pourcentage_France" ~ "France",
-        reglementation == "pourcentage_Danemark" ~ "Danemark",
-        reglementation == "pourcentage_USA" ~ "USA"
+        reglementation == "pourcentage_france" ~ "France",
+        reglementation == "pourcentage_danemark" ~ "Danemark",
+        reglementation == "pourcentage_usa" ~ "USA"
       ))
     
+    # Vérifier si la colonne 'matrix' existe et n'est pas vide
+    if (!"matrix" %in% colnames(region_matrix_long) || all(is.na(region_matrix_long$matrix))) {
+      return(ggplot() + labs(title = "La colonne 'matrix' est manquante ou vide dans les données."))
+    }
+    
     # Créer le graphique pour la région sélectionnée par matrice
-    if (nrow(region_matrix_long) == 0) {
-      return(ggplot() + labs(title = "Aucune donnée disponible pour cette région"))
-    } else 
     ggplot(region_matrix_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
       geom_line(size = 1) +
       geom_point(size = 2) +
