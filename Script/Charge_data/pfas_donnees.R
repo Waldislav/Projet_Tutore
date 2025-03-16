@@ -94,8 +94,8 @@ generate_row_dt <- function(row, pfas) {
 # Appliquer la génération de tableau pour chaque ligne
 pfas[, tableau := purrr::map_chr(.I, function(i) generate_row_dt(pfas[i, ], pfas))]
 
-france_conformite_subset <- france_conformite %>%
-  select(rowid, non_conforme_France, non_conforme_USA, non_conforme_Danemark)
+france_conformite_subset <- france_norme %>%
+  select(rowid, non_conforme_france, non_conforme_usa, non_conforme_danemark)
 
 pfas <- pfas %>%
   left_join(france_conformite_subset, by = "rowid")

@@ -47,9 +47,9 @@ create_map <- function(input, data, regle) {
       opacity = 1,
       weight = 1,
       fillColor = ~ifelse(
-        regle == "France" & non_conforme_France == TRUE, "red",  # Si "France" et non conforme, rouge
-        ifelse(regle == "USA" & non_conforme_USA == TRUE, "red",  # Si "USA" et non conforme, rouge
-               ifelse(regle == "Danemark" & non_conforme_Danemark == TRUE, "red", "orange"))),
+        regle == "France" & non_conforme_france == TRUE, "red",  # Si "France" et non conforme, rouge
+        ifelse(regle == "USA" & non_conforme_usa == TRUE, "red",  # Si "USA" et non conforme, rouge
+               ifelse(regle == "Danemark" & non_conforme_danemark == TRUE, "red", "orange"))),
       fillOpacity = 1,
       radius = 5,
       popup = ~paste(
