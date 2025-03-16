@@ -114,6 +114,8 @@ resultats_conformite_matrix <- france_conformite %>%
 write_csv(resultats_conformite_matrix, file = "resultat_conformite_matrix.csv")
 write_csv(resultats, file = "resultats.csv")
 
+source("Analyses/vraies_normes.R")
+
 # Nettoyer l'environnement (optionnel)
 rm(normes)
 rm(substances_concernees)

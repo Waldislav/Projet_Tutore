@@ -1,3 +1,25 @@
+addLegendCustom <- function(map, position = "bottomright", colors, labels, sizes) {
+  legend_html <- paste0(
+    "<div style='background-color: white; padding: 5px; border-radius: 5px;'>",
+    "<strong>Légende</strong><br>"
+  )
+  
+  for (i in seq_along(colors)) {
+    legend_html <- paste0(
+      legend_html,
+      "<div style='display: flex; align-items: center; margin-bottom: 3px;'>",
+      "<div style='width:", sizes[i], "px; height:", sizes[i], "px; ",
+      "background-color:", colors[i], "; border-radius: 50%; ",
+      "margin-right: 5px;'></div>",
+      labels[i], "</div>"
+    )
+  }
+  
+  legend_html <- paste0(legend_html, "</div>")
+  
+  return(addControl(map, HTML(legend_html), position = position))
+}
+
 create_map <- function(input, data) {
   leaflet(data) %>%
     addTiles() %>%
@@ -50,5 +72,13 @@ create_map <- function(input, data) {
       fillColor = "black",
       fillOpacity = 1,
       popup = ~paste("Producteur : ", name)
+    ) %>%
+    addLegendCustom(
+      position = "bottomright",
+      colors = c("orange", "red", "grey", "black"),
+      labels = c("Prélévement conforme","Prélévement non conforme", "Utilisateur", "Producteur"),
+      sizes = c(10, 10, 10, 10) # Taille des cercles
     )
 }
+
+

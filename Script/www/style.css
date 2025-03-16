@@ -101,3 +101,21 @@ body, html {
     text-align: center;
     font-size: 2em;
 }
+
+.legend-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.legend-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
