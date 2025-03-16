@@ -9,7 +9,6 @@ library(leaflegend)
 
 source("Charge_data/quick_start.R")
 #source("Charge_data/main.R")
-#source("Analyses/Normes_tableau.R")
 source("page_web/ui.R")
 source("page_web/server.R")
 

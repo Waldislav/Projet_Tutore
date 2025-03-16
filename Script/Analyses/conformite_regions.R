@@ -33,6 +33,8 @@ resultats_region_annee <- france_norme %>%
 # Exporter les résultats en CSV
 write_csv(resultats_region_annee, file = "../Data/reglementations/resultats_region_annee.csv")
 write_csv(resultats_region, file = "../Data/reglementations/resultats_region.csv")
+write_csv(resultats_conformite_matrix, file = "../Data/reglementations/resultat_conformite_matrix.csv")
+write_csv(resultats, file = "../Data/reglementations/resultats.csv")
 
 
 rm(resultats_region)

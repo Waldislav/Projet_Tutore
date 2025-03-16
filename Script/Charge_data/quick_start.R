@@ -27,3 +27,6 @@ resultats_region <- read_csv("../Data/reglementations/resultats_region.csv")
 resultats_region_annee <- read_csv("../Data/reglementations/resultats_region_annee.csv")
 user <- read_csv("../Data/reglementations/user.csv")
 year_counts <- read_csv("../Data/reglementations/year_counts.csv")
+
+pfas_group_filtre$substance <- factor(pfas_group_filtre$substance, 
+                                      levels = unique(pfas_group_filtre$substance))
