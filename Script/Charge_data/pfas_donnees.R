@@ -64,9 +64,10 @@ regions_sum_pfas <- regions_sum_pfas %>%
   left_join(utilisateur_count, by = c("region" = "region"))
 
 library(data.table)
+setDT(france_norme)
 setDT(pfas)
 
-
+ 
 generate_row_dt <- function(row, pfas) {
   pfas_filtered <- pfas[rowid == row$rowid]
   
@@ -79,9 +80,9 @@ generate_row_dt <- function(row, pfas) {
     "<tr><th>Substance</th><th>Valeur</th></tr>",
     paste0(
       "<tr><td>", 
-      ifelse(pfas_filtered$substance == row$substance, 
-             paste0("<strong>", pfas_filtered$substance, "</strong>"), 
-             pfas_filtered$substance),
+      #ifelse(pfas_filtered$substance == row$substance, 
+      #      paste0(pfas_filtered$substance), 
+      pfas_filtered$substance,
       "</td><td>", 
       pfas_filtered$value, 
       pfas_filtered$unit, 
@@ -92,7 +93,7 @@ generate_row_dt <- function(row, pfas) {
 }
 
 # Appliquer la génération de tableau pour chaque ligne
-pfas[, tableau := purrr::map_chr(.I, function(i) generate_row_dt(pfas[i, ], pfas))]
+france_norme[, tableau := purrr::map_chr(.I, function(i) generate_row_dt(france_norme[i, ], pfas))]
 
 france_conformite_subset <- france_norme %>%
   select(rowid, non_conforme_france, non_conforme_usa, non_conforme_danemark)

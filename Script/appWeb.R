@@ -7,7 +7,7 @@ library(bslib)
 library(gridExtra)
 library(leaflegend)
 
-source("Charge_data/quick_start.R")
+#source("Charge_data/quick_start.R")
 #source("Charge_data/main.R")
 source("page_web/ui.R")
 source("page_web/server.R")

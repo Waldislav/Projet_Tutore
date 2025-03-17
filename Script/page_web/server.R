@@ -20,7 +20,7 @@ generate_pfas_table <- function(rowid) {
 }
 
 
-server <- function(input, output) {
+server <- function(input, output, session) {
   # Données filtrées pour la carte
   filtered_data <- reactive({
     data <- pfas
@@ -45,7 +45,9 @@ server <- function(input, output) {
         filter(matrix == input$matrix)
     }
     
-    return(data)
+    data_f <- france_norme %>% filter(rowid %in% data$rowid)
+    
+    return(data_f)
     
     
     #data <- data %>%
@@ -155,7 +157,40 @@ server <- function(input, output) {
     p2 <- create_combined_plot(region_id, selected_substance, input$show_prelevements, input$show_pfas_total, input$show_selected_pfas)
     
     # Afficher les deux graphiques
-    grid.arrange(p1, p2, nrow = 2)
+    grid.arrange(p2, nrow = 1)
+  })
+  
+  output$combined_plot2 <- renderPlot({
+    req(input$map_shape_click)
+    
+    region_id <- input$map_shape_click$id
+    selected_substance <- input$substance
+    
+    # Filtrer les données par région sélectionnée pour le graphique existant
+    pfas_data <- pfas %>%
+      filter(region == region_id,
+             substance %in% names(sort(table(substance), decreasing = TRUE))[1:9]) %>%
+      select(region, substance, matrix, value) %>%
+      mutate(value = as.numeric(value))
+    
+    # Créer le diagramme en barres empilées
+    p1 <- ggplot(pfas_data, aes(x = matrix, y = value, fill = substance)) +
+      geom_bar(stat = "identity", position = "stack") +
+      labs(
+        title = "Quantité de PFAS détectée par milieu et par substance",
+        x = "Milieu (Matrix)",
+        y = "Quantité de PFAS détectée",
+        fill = "Substance"
+      ) +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      scale_fill_brewer(palette = "Set1")
+    
+    # Appeler l'ancien graphique
+    p2 <- create_combined_plot(region_id, selected_substance, input$show_prelevements, input$show_pfas_total, input$show_selected_pfas)
+    
+    # Afficher les deux graphiques
+    grid.arrange(p1, nrow = 1)
   })
   
   # Nouveau graphique en bougies : Nombre de lignes par matrix pour la région sélectionnée
@@ -335,6 +370,16 @@ server <- function(input, output) {
       theme(legend.position = "bottom")
   })
   
+  region_selected <- reactiveVal(NULL)
+  
+  # Détecter un clic sur la carte et mettre à jour la région sélectionnée
+  observeEvent(input$map_shape_click, {
+    region_selected(input$map_shape_click$id)  # Stocker l'ID de la région sélectionnée
+    
+    # Exécuter un script JS pour ouvrir l'accordéon
+    session$sendCustomMessage("openAccordion", list(id = "region_accordion"))
+  })
+  
   # Texte pour la région sélectionnée
   output$region_name <- renderText({
     req(input$map_shape_click, input$year)
@@ -356,11 +401,11 @@ server <- function(input, output) {
       )
     } else {
       paste(
-        "<b>Région sélectionnée :</b>", region_data$nom, "<br>",
-        "<b>Nombre de PFAS :</b>", region_data$nb_pfas, "<br>",
-        "<b>Somme des valeurs des PFAS :</b> ", region_data$sum_pfas, "<br>",
-        "<b>Nombre de producteurs :</b> ", region_data$nb_producteur, "<br>",
-        "<b>Nombre d'utilisateurs :</b> ", region_data$nb_utilisateurs, "<br>"
+        "<p><b>Région sélectionnée :</b>", region_data$nom, "</p>",
+        "<p><b>Nombre de prélèvements :</b>", region_data$nb_pfas, "</p>",
+        "<p><b>Somme des valeurs des PFAS :</b> ", region_data$sum_pfas, "</p>",
+        "<p><b>Nombre de producteurs :</b> ", region_data$nb_producteurs, "</p>",
+        "<p><b>Nombre d'utilisateurs :</b> ", region_data$nb_utilisateurs, "</p>"
       )
     }
   })

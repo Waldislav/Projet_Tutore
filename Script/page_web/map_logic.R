@@ -59,8 +59,8 @@ create_map <- function(input, data, regle) {
         "Ville:", city, "<br>",
         #"Substance:", substance, "<br>",
         #"Sommes pfas:", pfas_sum, "<br>",
-        "Année:", year, "<br>",
-        tableau
+        "Année:", year, "<br>"
+        ,tableau
       )
     ) %>%
     addCircleMarkers(
@@ -86,30 +86,7 @@ create_map <- function(input, data, regle) {
       colors = c("orange", "red", "grey", "black"),
       labels = c("Prélévement conforme","Prélévement non conforme", "Utilisateur", "Producteur"),
       sizes = c(10, 10, 10, 10) # Taille des cercles
-    ) %>%
-    # Injecter du JS pour charger Turf.js et filtrer les points
-    onRender("
-      function(el, x) {
-        // Charger Turf.js
-        var script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js';
-        script.onload = function() {
-          console.log('Turf.js chargé !');
-          
-          // Exemple : Filtrer les points à moins de 10 km d'un centre donné
-          var center = turf.point([2.3522, 48.8566]); // Paris
-          var radius = 10; // 10 km
-          
-          var filtered = x.x.data.filter(function(d) {
-            var point = turf.point([d.lon, d.lat]);
-            return turf.distance(center, point, {units: 'kilometers'}) <= radius;
-          });
-
-          console.log('Points après filtrage:', filtered.length);
-        };
-        document.head.appendChild(script);
-      }
-    ")
+    )
 }
 
 

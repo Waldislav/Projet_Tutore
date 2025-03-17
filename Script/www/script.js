@@ -29,3 +29,10 @@ function scroll_intro () {
     console.log(offsetPosition);
     document.getElementById('a-propos').scrollIntoView({top: offsetPosition, behavior: 'smooth' });
 };
+
+Shiny.addCustomMessageHandler('openAccordion', function(message) {
+    let acc = document.getElementById(message.id);
+    if (acc && acc.getElementsByClassName('accordion-panel')[0]) {
+      acc.getElementsByClassName('accordion-panel')[0].click();
+    }
+  });
