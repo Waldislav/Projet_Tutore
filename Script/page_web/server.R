@@ -1,6 +1,6 @@
 # Charger les fichiers de logique spécifique
-source("page_web/map_logic.R")
-source("page_web/plot_logic.R")
+source("Script/page_web/map_logic.R")
+source("Script/page_web/plot_logic.R")
 
 generate_pfas_table <- function(rowid) {
   pfas_filtered <- pfas %>% filter(rowid == !!rowid)  # Sélectionner les pfas correspondant au rowid

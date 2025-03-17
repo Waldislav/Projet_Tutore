@@ -1,0 +1,6 @@
+#print(getwd())
+#setwd("Script")
+#print(getwd())
+source("Script/appWeb.R")
+print("4")
+shinyApp(ui = ui, server = server)

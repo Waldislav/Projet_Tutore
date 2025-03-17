@@ -6,8 +6,8 @@ ui <- page_fluid(
     tags$title("Étude PFAS"),
     tags$script(src = "script.js")
   ),
-  includeHTML("page_web/modules/baniere.html"),
-  includeHTML("page_web/modules/apropos.html"),
+  includeHTML("Script/page_web/modules/baniere.html"),
+  includeHTML("Script/page_web/modules/apropos.html"),
   tags$div(id = "analyse-globale",
     class = "section",
     titlePanel("Analyse globale"),
@@ -88,5 +88,5 @@ ui <- page_fluid(
       )
     ),
   ),
-  includeHTML("page_web/modules/info.html")
+  includeHTML("Script/page_web/modules/info.html")
 )

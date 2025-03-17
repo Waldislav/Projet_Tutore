@@ -7,12 +7,13 @@ library(bslib)
 library(gridExtra)
 library(leaflegend)
 
-#source("Charge_data/quick_start.R")
+source("Script/Charge_data/quick_start.R")
+print("1")
 #source("Charge_data/main.R")
-source("page_web/ui.R")
-source("page_web/server.R")
-
-
+source("Script/page_web/ui.R")
+print("2")
+source("Script/page_web/server.R")
+print("3")
 # Lancer l'application Shiny
-shinyApp(ui = ui, server = server)
+#shinyApp(ui = ui, server = server)
 
