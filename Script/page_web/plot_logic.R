@@ -1,4 +1,4 @@
-source("page_web/helpers.R")  # Charger les fonctions utilitaires
+source("Script/page_web/helpers.R")  # Charger les fonctions utilitaires
 
 create_combined_plot <- function(region_id, selected_substance, show_prelevements, show_pfas_total, show_selected_pfas) {
   req(region_id)

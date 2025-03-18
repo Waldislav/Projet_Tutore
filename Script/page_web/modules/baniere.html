@@ -1,0 +1,46 @@
+<div class="banner">
+    <div class="titre">
+        <h1>PFAS</h1>
+        <h2>Support d'analyses sur des poluants éternels</h2>
+    </div>
+    <div class="scroll-down" onclick="scroll_intro()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="108px" viewBox="0 -960 960 460" width="108px" fill="#e3e3e3"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>    
+    </div>
+</div>
+
+<div class="navbar_page">
+    <span href="#a-propos" class="nav-link">À propos</span>
+    <span href="#analyse-globale" class="nav-link">Analyse globale</span>
+    <span href="#analyse-geographique" class="nav-link">Analyse géographique</span>
+    <span href="#informations" class="nav-link">Informations</span>
+</div>
+
+<script>
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            const offset = 70;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = target.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+            console.log(offsetPosition);
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    function scroll_intro () {
+        const target = document.getElementById('a-propos');
+        const offset = 70;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = target.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+        console.log(offsetPosition);
+        document.getElementById('a-propos').scrollIntoView({top: offsetPosition, behavior: 'smooth' });
+    };
+</script>

@@ -29,3 +29,4 @@ ggplot(france, aes(x = matrix, fill = matrix)) +
 
 rm(matrix_france)
 rm(groupe_annee)
+

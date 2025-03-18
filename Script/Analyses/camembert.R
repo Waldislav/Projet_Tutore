@@ -1,5 +1,8 @@
 library(jsonlite)
 
+pfas_group_filtre$substance <- factor(pfas_group_filtre$substance, 
+                                      levels = unique(pfas_group_filtre$substance))
+
 # Cambembert sans le pourcentage affiché dedans
 ggplot(pfas_group_filtre, aes(x = "", y = total_value, fill = substance)) +
   geom_bar(stat = "identity", width = 1) +

@@ -1,7 +1,9 @@
 # Chargement des données nécessaire aux traitements 
 
-regions <- st_read("../gadm41_FRA.gpkg", layer = "ADM_ADM_1")
-#villes <- read_csv("../Data/villes.csv")
+regions <- st_read("../regions.gpkg")
+pays <- st_read("../countries.gpkg")
+pays <- filter(pays, ADMIN == "France")
+villes <- read_csv("../Data/villes.csv")
 
 # Fonctions de traitements
 source("Charge_data/fonctions_filtre.R")
@@ -32,13 +34,27 @@ eaurob <- read_csv("../Data/france_eaurob.csv")
 # 131
 radiofrance_dw <- read_csv("../Data/radiofrance_dw.csv")
 # 132
-#tfa <- read_csv("../Data/tfa.csv")
+tfa <- read_csv("../Data/tfa.csv")
 
-france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface_water)
-#france <- complete_lat_lon(france)
+france <- bind_rows(ades, naiades, anses, rhine, eaurob, radiofrance_dw, surface_water, tfa)
+france <- complete_lat_lon(france)
+france <- complete_country(france)
 
 # On filtre toutes les valeurs non significatives
 france <- nettoyer(france)
+
+resultats_region_annee <- read_csv("../Data/reglementations/resultats_region_annee.csv")
+resultats_region <- read_csv("../Data/reglementations/resultats_region.csv")
+resultats <- read_csv("../Data/reglementations/resultats.csv")
+resultats_conformite_matrix <- read_csv("../Data/reglementations/resultat_conformite_matrix.csv")
+
+year_counts <- as.data.frame(table(france$year))
+colnames(year_counts) <- c("year", "count")
+
+year_counts$year <- as.numeric(as.character(year_counts$year))
+
+groupe_annee <- aggregate(pfas_sum ~ year, data = france, FUN = sum)
+matrix_france <- aggregate(pfas_sum ~ matrix, data = france, FUN = sum)
 
 # On ajoute les regions à france
 source("Charge_data/regions.R")
@@ -51,4 +67,4 @@ rm(rhine)
 rm(eaurob)
 rm(radiofrance_dw)
 rm(surface_water)
-#rm(tfa)
+rm(tfa)
