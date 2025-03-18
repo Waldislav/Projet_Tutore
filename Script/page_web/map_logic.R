@@ -55,10 +55,9 @@ create_map <- function(input, data, regle) {
       popup = ~paste(
         "Id :", rowid, "<br>",
         "Milieu :", matrix, "<br>",
-        "Région:", region, "<br>",
-        "Ville:", city, "<br>",
-        #"Substance:", substance, "<br>",
-        #"Sommes pfas:", pfas_sum, "<br>",
+        "Région : ", region, "<br>",
+        "Ville : ", city, "<br>",
+        "Sommes des PFAS : ", pfas_sum, " ", unit, "<br>",
         "Année:", year, "<br>"
         ,tableau
       )

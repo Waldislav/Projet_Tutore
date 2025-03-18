@@ -326,6 +326,27 @@ server <- function(input, output, session) {
       theme(legend.position = "bottom")
   })
   
+  output$evo_une_substance <- renderPlot({
+    pfas_summary <- pfas %>%
+      left_join(france %>% select(rowid, year_col = year), by = "rowid") %>%  # Associer 'years' au dataframe pfas_df et renommer la colonne 'year' en 'year_col'
+      group_by(year_col, substance) %>%  # Groupement par année et substance
+      summarise(
+        avg_value = sum(value, na.rm = TRUE),  # Calcul de la moyenne des valeurs
+        .groups = "drop"
+      ) %>%
+      filter(substance == input$une_substance)  # Filtrer pour ne conserver que la substance PFOS
+    
+    ggplot(pfas_summary, aes(x = year_col, y = avg_value)) +
+      geom_line() +  # Tracer la courbe
+      geom_point() +  # Ajouter des points pour mieux visualiser les données
+      labs(
+        title = "Évolution des valeurs cumulées pour les PFOS",
+        x = "Année",
+        y = "Valeur totale"
+      ) +
+      theme_minimal()
+  })
+  
   # Nouveau graphique pour la région sélectionnée par matrice
   output$region_matrix_plot <- renderPlot({
     req(input$map_shape_click)

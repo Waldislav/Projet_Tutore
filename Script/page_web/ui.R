@@ -14,7 +14,14 @@ ui <- page_fluid(
     tags$p("Ici nous avons une analyse totale sur toute la France. Les prélèvements sont tous réunis entre 2006 et 2024. La somme des PFAS sur une année est faite en ng/L ou ng/kg."),
     card(
       card_header("Évolution de toutes les substances"),
-      plotOutput("evo_substance")
+      plotOutput("evo_substance"),
+      layout_sidebar(
+        sidebar = sidebar(
+          selectInput("une_substance", "Choisir une substance : ",
+                      unique(pfas$substance))
+        ),
+        plotOutput("evo_une_substance")
+      )
     ),
     tags$p("On peut également voir comment nos données sont répandues sur nos régions et combien d'utilisateur (en rouge) et de producteur (en noir) sont présents par régions. On peut également voir la diversité des PFAS analysés, les 4.7% d'Autres représentent 30 PFAS différents."),
     layout_columns(
