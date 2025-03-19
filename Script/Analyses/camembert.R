@@ -27,7 +27,7 @@ ggplot(pfas_group_filtre, aes(x = "", y = total_value, fill = substance)) +
   coord_polar(theta = "y") +
   theme_void() +
   labs(title = "Répartition des PFAS") +
-  geom_text(aes(label = ifelse(percentage > 4, paste0(round(percentage, 1), "%"), "")),  # Condition sur les pourcentages
+  geom_text(aes(label = ifelse(percentage > 4, paste0(round(percentage, 1), "%"), "")),
             position = position_stack(vjust = 0.5)) +
   scale_fill_manual(
     values = brewer.pal(length(unique(pfas_group_filtre$substance)), "Set3"),
@@ -40,7 +40,6 @@ ggplot(pfas_group_filtre, aes(x = "", y = total_value, fill = substance)) +
                              title.hjust = 0.5))
 
 # Ananlyse sur le nombre de pfas par region avec le nombre de producteur (en noir) et d'utilisateurs (en rouge)
-
 producteur_count <- producteur %>%
   group_by(region) %>%
   summarise(nb_producteur = n())
@@ -54,8 +53,8 @@ aggregated_data <- pfas %>%
   group_by(region) %>%
   filter(!is.na(region)) %>%
   summarise(
-    total_value = sum(value, na.rm = TRUE),  # Somme des valeurs PFAS par région et année
-    nb_pfas = n()                            # Nombre de PFAS par région et année
+    total_value = sum(value, na.rm = TRUE),  
+    nb_pfas = n()                       
   ) %>%
   ungroup()
 
@@ -70,11 +69,10 @@ ggplot(aggregated_data, aes(x = reorder(region, total_value), y = total_value)) 
   labs(x = "Région", y = "Valeur Totale des PFAS", 
        title = "Valeur Totale des PFAS par Région") +
   theme_minimal() +
-  # Ajouter les totaux de producteurs et utilisateurs au bout de chaque barre
   geom_text(aes(label = nb_producteur), position = position_stack(vjust = 1.05), 
             color = "black", size = 3) +
   geom_text(aes(label = nb_utilisateurs), position = position_stack(vjust = 1.2), 
-            color = "red", size = 3)  # Les utilisateurs en rouge, producteurs en noir
+            color = "red", size = 3)
 
 rm(producteur_count)
 rm(utilisateur_count)

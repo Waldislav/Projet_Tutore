@@ -1,6 +1,21 @@
-"category","name","city","country","type","sector","source_type","data_collection_method","source_text","source_url","dataset_id","dataset_name","pfas_values","unit","pfas_sum","details","matrix","date","year","region","lat","lon"
-"PFAS production facility","Chemours","Villers Saint-Paul","France","PFAS production facility",NA,"OSINT","OSINT","Manual compilation during the FPP project",NA,13,"PFAS Producers","[]","ng/l",NA,"{}",NA,NA,NA,"Hauts-de-France",49.291133,2.507522
-"PFAS production facility","Arkema","Pierre-Bénite","France","PFAS production facility",NA,"OSINT","OSINT","Manual compilation during the FPP project",NA,13,"PFAS Producers","[]","ng/l",NA,"{}",NA,NA,NA,"Auvergne-Rhône-Alpes",45.708018,4.825798
-"PFAS production facility","Daikin","Pierre-Bénite","France","PFAS production facility",NA,"OSINT","OSINT","Manual compilation during the FPP project",NA,13,"PFAS Producers","[]","ng/l",NA,"{}",NA,NA,NA,"Auvergne-Rhône-Alpes",45.710831,4.824097
-"PFAS production facility","Solvay","Tavaux","France","PFAS production facility",NA,"OSINT","OSINT","Manual compilation during the FPP project",NA,13,"PFAS Producers","[]","ng/l",NA,"{}",NA,NA,NA,"Bourgogne-Franche-Comté",47.056373,5.413534
-"PFAS production facility","Solvay","Salindres","France","PFAS production facility",NA,"OSINT","OSINT","Manual compilation during the FPP project",NA,13,"PFAS Producers","[]","ng/l",NA,"{}",NA,NA,NA,"Occitanie",44.171105,4.152092
+category,lat,lon,name,city,country,type,sector,source_type,data_collection_method,source_text,source_url,dataset_id,dataset_name,pfas_values,unit,pfas_sum,details,matrix,date,year
+PFAS production facility,49.291133,2.507522,Chemours,Villers Saint-Paul,France,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,45.708018,4.825798,Arkema,Pierre-Bénite,France,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,45.710831,4.824097,Daikin,Pierre-Bénite,France,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,51.234273,4.334542,3M,Zwijndrecht,Belgium,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,51.816086,4.727333,Chemours,Dordrecht,Netherlands,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,48.179018,12.724147,Dyneon,Gendorf,Germany,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,48.178934,12.721952,W. L. Gore,Gendorf,Germany,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,48.178519,12.721714,Archroma,Gendorf,Germany,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,51.027349,6.982524,Lanxess,Leverkusen,Germany,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,44.883784,8.668563,Solvay,Spinetta-Marengo,Italy,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,53.879144,-2.999966,Asahi Glass Company (AGC),Thornton-Cleveleys,United Kingdom,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,53.775587,-2.797009,F2,Preston,United Kingdom,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,53.314531,-2.718751,Koura,Runcorn,United Kingdom,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,50.095532,8.53974,Daikin Refrigerants,Frankfurt am Main,Germany,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,45.552799,11.387419,Miteni,Trissino,Italy,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,"{""comments"":"" not active anymore""}",,,
+PFAS production facility,50.020295,20.924575,Grupa Azoty,Tarnów,Poland,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,"{""comments"":"" not active anymore""}",,,
+PFAS production facility,49.229924,9.172846,Solvay,Bad Wimpfen,Germany,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,43.235473,-3.015786,Arkema,Zaramillo,Spain,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,"{""comments"":"" not active anymore""}",,,
+PFAS production facility,47.056373,5.413534,Solvay,Tavaux,France,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,
+PFAS production facility,44.171105,4.152092,Solvay,Salindres,France,PFAS production facility,,OSINT,OSINT,Manual compilation during the FPP project,,13,PFAS Producers,[],,,{},,,

@@ -1,7 +1,7 @@
 # Chargement des données nécessaire aux traitements 
 
-regions <- st_read("regions.gpkg")
-villes <- read_csv("Data/villes.csv")
+regions <- st_read("../regions.gpkg")
+villes <- read_csv("../Data/villes.csv")
 
 # Fonctions de traitements
 source("Charge_data/fonctions_filtre.R")
@@ -41,10 +41,10 @@ france <- complete_country(france)
 # On filtre toutes les valeurs non significatives
 france <- nettoyer(france)
 
-resultats_region_annee <- read_csv("../Data/reglementations/resultats_region_annee.csv")
-resultats_region <- read_csv("../Data/reglementations/resultats_region.csv")
-resultats <- read_csv("../Data/reglementations/resultats.csv")
-resultats_conformite_matrix <- read_csv("../Data/reglementations/resultat_conformite_matrix.csv")
+#resultats_region_annee <- read_csv("../Data/calcul/resultats_region_annee.csv")
+#resultats_region <- read_csv("../Data/calcul/resultats_region.csv")
+#resultats <- read_csv("../Data/calcul/resultats.csv")
+#resultats_conformite_matrix <- read_csv("../Data/calcul/resultat_conformite_matrix.csv")
 
 year_counts <- as.data.frame(table(france$year))
 colnames(year_counts) <- c("year", "count")

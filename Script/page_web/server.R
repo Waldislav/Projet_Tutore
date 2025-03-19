@@ -2,27 +2,7 @@
 source("Script/page_web/map_logic.R")
 source("Script/page_web/plot_logic.R")
 
-
-generate_pfas_table <- function(rowid) {
-  pfas_filtered <- pfas %>% filter(rowid == !!rowid)  # Sélectionner les pfas correspondant au rowid
-  
-  if (nrow(pfas_filtered) == 0) {
-    return("Aucune donnée PFAS")
-  }
-  
-  table_html <- paste0(
-    "<table border='1' style='border-collapse: collapse; width: 100%;'>",
-    "<tr><th>Substance</th><th>Valeur</th></tr>",
-    paste0("<tr><td>", pfas_filtered$substance, "</td><td>", pfas_filtered$value,pfas_filtered$unit, "</td></tr>", collapse = ""),
-    "</table>"
-  )
-  
-  return(table_html)
-}
-
-
 server <- function(input, output, session) {
-  # Données filtrées pour la carte
   filtered_data <- reactive({
     data <- pfas
     
@@ -49,11 +29,6 @@ server <- function(input, output, session) {
     data_f <- france_norme %>% filter(rowid %in% data$rowid)
     
     return(data_f)
-    
-    
-    #data <- data %>%
-    #  rowwise() %>%
-    #  mutate(pfas_table = generate_pfas_table(rowid))
   })
   
   # Carte Leaflet
@@ -85,7 +60,6 @@ server <- function(input, output, session) {
       labs(x = "Région", y = "Valeur Totale des PFAS", 
            title = "Valeur Totale des PFAS par Région") +
       theme_minimal() +
-      # Ajouter les totaux de producteurs et utilisateurs au bout de chaque barre
       geom_text(aes(label = nb_producteur), position = position_stack(vjust = 1.05), 
                 color = "black", size = 3) +
       geom_text(aes(label = nb_utilisateurs), position = position_stack(vjust = 1.2), 
@@ -119,12 +93,12 @@ server <- function(input, output, session) {
   
   output$france_matrix <- renderPlot({
     ggplot(matrix_france, aes(x = matrix, y = pfas_sum, fill = matrix)) +
-      geom_bar(stat = "identity", show.legend = FALSE) +  # Utiliser des barres avec les valeurs de pfas_sum
+      geom_bar(stat = "identity", show.legend = FALSE) +
       labs(title = "La quantité de PFAS détectés par milieux", 
            x = "Matrix", 
            y = "Somme des PFAS") +
-      theme_minimal() +  # Thème minimal pour le graphique
-      scale_fill_brewer(palette = "Set1")  # Palette de couleurs agréables
+      theme_minimal() +
+      scale_fill_brewer(palette = "Set1")
   })
   
   # Graphique combiné existant
@@ -134,14 +108,12 @@ server <- function(input, output, session) {
     region_id <- input$map_shape_click$id
     selected_substance <- input$substance
     
-    # Filtrer les données par région sélectionnée pour le graphique existant
     pfas_data <- pfas %>%
       filter(region == region_id,
              substance %in% names(sort(table(substance), decreasing = TRUE))[1:9]) %>%
       select(region, substance, matrix, value) %>%
       mutate(value = as.numeric(value))
     
-    # Créer le diagramme en barres empilées
     p1 <- ggplot(pfas_data, aes(x = matrix, y = value, fill = substance)) +
       geom_bar(stat = "identity", position = "stack") +
       labs(
@@ -154,10 +126,8 @@ server <- function(input, output, session) {
       theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
       scale_fill_brewer(palette = "Set1")
     
-    # Appeler l'ancien graphique
     p2 <- create_combined_plot(region_id, selected_substance, input$show_prelevements, input$show_pfas_total, input$show_selected_pfas)
     
-    # Afficher les deux graphiques
     grid.arrange(p2, nrow = 1)
   })
   
@@ -167,14 +137,12 @@ server <- function(input, output, session) {
     region_id <- input$map_shape_click$id
     selected_substance <- input$substance
     
-    # Filtrer les données par région sélectionnée pour le graphique existant
     pfas_data <- pfas %>%
       filter(region == region_id,
              substance %in% names(sort(table(substance), decreasing = TRUE))[1:9]) %>%
       select(region, substance, matrix, value) %>%
       mutate(value = as.numeric(value))
     
-    # Créer le diagramme en barres empilées
     p1 <- ggplot(pfas_data, aes(x = matrix, y = value, fill = substance)) +
       geom_bar(stat = "identity", position = "stack") +
       labs(
@@ -187,27 +155,22 @@ server <- function(input, output, session) {
       theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
       scale_fill_brewer(palette = "Set1")
     
-    # Appeler l'ancien graphique
     p2 <- create_combined_plot(region_id, selected_substance, input$show_prelevements, input$show_pfas_total, input$show_selected_pfas)
     
-    # Afficher les deux graphiques
     grid.arrange(p1, nrow = 1)
   })
   
-  # Nouveau graphique en bougies : Nombre de lignes par matrix pour la région sélectionnée
   output$box_plot <- renderPlot({
     req(input$map_shape_click)
     
     region_id <- input$map_shape_click$id
     
-    # Compter le nombre de lignes par région et par matrix dans le dataframe "france"
     france_count <- france %>%
       filter(region == region_id) %>%
       count(matrix)
     
-    # Créer le graphique en barres avec des barres pleines
     ggplot(france_count, aes(x = matrix, y = n, fill = matrix)) +
-      geom_bar(stat = "identity") +  # Barres pleines avec une couleur par matrix
+      geom_bar(stat = "identity") +
       labs(
         title = paste("Nombre de lignes par milieu (Matrix) dans", region_id),
         x = "Milieu (Matrix)",
@@ -216,12 +179,10 @@ server <- function(input, output, session) {
       ) +
       theme_minimal() +
       theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-      scale_fill_brewer(palette = "Set1")  # Palette de couleurs pour les barres
+      scale_fill_brewer(palette = "Set1")
   })
   
-  # Nouveau graphique pour la France
   output$france_plot <- renderPlot({
-    # Convertir les données en format long pour ggplot2
     france_long <- resultats %>%
       pivot_longer(
         cols = starts_with("pourcentage_non_conformes"),
@@ -234,7 +195,6 @@ server <- function(input, output, session) {
         reglementation == "pourcentage_non_conformes_usa" ~ "USA"
       ))
     
-    # Créer le graphique pour la France
     ggplot(france_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
       geom_line(size = 1) +
       geom_point(size = 2) +
@@ -249,17 +209,14 @@ server <- function(input, output, session) {
       theme(legend.position = "bottom")
   })
   
-  # Nouveau graphique pour la région sélectionnée
   output$region_plot <- renderPlot({
     req(input$map_shape_click)
     
     region_id <- input$map_shape_click$id
     
-    # Filtrer les données pour la région sélectionnée
     region_data <- resultats_region_annee %>%
       filter(region == region_id)
     
-    # Convertir les données en format long pour ggplot2
     region_long <- region_data %>%
       pivot_longer(
         cols = starts_with("pourcentage"),
@@ -272,7 +229,6 @@ server <- function(input, output, session) {
         reglementation == "pourcentage_USA" ~ "USA"
       ))
     
-    # Créer le graphique pour la région sélectionnée
     ggplot(region_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
       geom_line(size = 1) +
       geom_point(size = 2) +
@@ -287,9 +243,7 @@ server <- function(input, output, session) {
       theme(legend.position = "bottom")
   })
   
-  # Nouveau graphique pour la France par matrice
   output$france_matrix_plot <- renderPlot({
-    # Agréger les données pour la France (toutes régions confondues)
     france_matrix_data <- resultat_conformite_matrix %>%
       group_by(year, matrix) %>%
       summarise(
@@ -298,7 +252,6 @@ server <- function(input, output, session) {
         pourcentage_usa = mean(pourcentage_usa, na.rm = TRUE)
       )
     
-    # Convertir les données en format long pour ggplot2
     france_matrix_long <- france_matrix_data %>%
       pivot_longer(
         cols = starts_with("pourcentage"),
@@ -311,11 +264,10 @@ server <- function(input, output, session) {
         reglementation == "pourcentage_usa" ~ "USA"
       ))
     
-    # Créer le graphique pour la France par matrice
     ggplot(france_matrix_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
       geom_line(size = 1) +
       geom_point(size = 2) +
-      facet_wrap(~matrix) +  # Un graphique par matrice
+      facet_wrap(~matrix) +
       labs(
         title = "Évolution du pourcentage de prélèvements non conformes en France par matrice",
         x = "Année",
@@ -329,11 +281,11 @@ server <- function(input, output, session) {
   
   output$evo_une_substance <- renderPlot({
     pfas_summary <- pfas %>%
-      filter(substance == input$une_substance) %>% # Filtrer pour ne conserver que la substance PFOS 
-      left_join(france %>% select(rowid, year_col = year), by = "rowid") %>%  # Associer 'years' au dataframe pfas_df et renommer la colonne 'year' en 'year_col'
-      group_by(year_col, substance) %>%  # Groupement par année et substance
+      filter(substance == input$une_substance) %>% 
+      left_join(france %>% select(rowid, year_col = year), by = "rowid") %>%
+      group_by(year_col, substance) %>% 
       summarise(
-        avg_value = sum(value, na.rm = TRUE),  # Calcul de la moyenne des valeurs
+        avg_value = sum(value, na.rm = TRUE),
         nb_valeur = n(),  
         .groups = "drop"
       )
@@ -369,17 +321,14 @@ server <- function(input, output, session) {
     
   })
   
-  # Nouveau graphique pour la région sélectionnée par matrice
   output$region_matrix_plot <- renderPlot({
     req(input$map_shape_click)
     
     region_id <- input$map_shape_click$id
     
-    # Filtrer les données pour la région sélectionnée
     region_matrix_data <- resultat_conformite_matrix %>%
       filter(region == region_id)
     
-    # Convertir les données en format long pour ggplot2
     region_matrix_long <- region_matrix_data %>%
       pivot_longer(
         cols = starts_with("pourcentage"),
@@ -392,16 +341,14 @@ server <- function(input, output, session) {
         reglementation == "pourcentage_usa" ~ "USA"
       ))
     
-    # Vérifier si la colonne 'matrix' existe et n'est pas vide
     if (!"matrix" %in% colnames(region_matrix_long) || all(is.na(region_matrix_long$matrix))) {
-      return(ggplot() + labs(title = "La colonne 'matrix' est manquante ou vide dans les données."))
+      return(ggplot() + labs(title = "La colonne 'matrix' est manquante dans les données."))
     }
     
-    # Créer le graphique pour la région sélectionnée par matrice
     ggplot(region_matrix_long, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
       geom_line(size = 1) +
       geom_point(size = 2) +
-      facet_wrap(~matrix) +  # Un graphique par matrice
+      facet_wrap(~matrix) +
       labs(
         title = paste("Évolution du pourcentage de prélèvements non conformes dans", region_id, "par matrice"),
         x = "Année",
@@ -415,16 +362,12 @@ server <- function(input, output, session) {
   
   region_selected <- reactiveVal(NULL)
   
-  # Détecter un clic sur la carte et mettre à jour la région sélectionnée
   observeEvent(input$map_shape_click, {
-    region_selected(input$map_shape_click$id)  # Stocker l'ID de la région sélectionnée
-    
-    # Exécuter un script JS pour ouvrir l'accordéon
-    session$sendCustomMessage("openAccordion", list(id = "region_accordion"))
+    region_selected(input$map_shape_click$id) 
   })
   
   selected_dates <- reactive({
-    req(input$map_marker_click)  # Vérifie qu'un clic a eu lieu
+    req(input$map_marker_click)
     
     lat <- input$map_marker_click$lat
     lon <- input$map_marker_click$lng
@@ -433,13 +376,12 @@ server <- function(input, output, session) {
     dates <- unique(france_norme %>% 
                       filter(lat == !!lat, lon == !!lon) %>% 
                       mutate(date_year = paste(format(date, "%Y-%m-%d"), year, sep = " - ")) %>%
-                      pull(date_year))  # Récupère les valeurs uniques de la colonne date
-    
+                      pull(date_year))
     return(dates)
   })
   
   observe({
-    req(input$map_marker_click)  # Vérifie qu'un clic a eu lieu
+    req(input$map_marker_click)
     
     lat <- input$map_marker_click$lat
     lon <- input$map_marker_click$lng
@@ -464,9 +406,6 @@ server <- function(input, output, session) {
       select(substance, value, unit)
   })
   
-  
-  
-  # Texte pour la région sélectionnée
   output$region_name <- renderText({
     req(input$map_shape_click, input$year)
     region_id <- input$map_shape_click$id
@@ -488,7 +427,7 @@ server <- function(input, output, session) {
     } else {
       paste(
         "<p><b>Région sélectionnée :</b>", region_data$nom, "</p>",
-        "<p><b>Nombre de prélèvements :</b>", region_data$nb_pfas, "</p>",
+        "<p><b>Nombre de PFAS détectés :</b>", region_data$nb_pfas, "</p>",
         "<p><b>Somme des valeurs des PFAS :</b> ", region_data$sum_pfas, "</p>",
         "<p><b>Nombre de producteurs :</b> ", region_data$nb_producteurs, "</p>",
         "<p><b>Nombre d'utilisateurs :</b> ", region_data$nb_utilisateurs, "</p>"

@@ -1,7 +1,3 @@
-# Charger les bibliothèques nécessaires
-library(dplyr)
-library(ggplot2)
-
 # Agréger les données par année pour les régions (regroupées)
 resultats_regions_annee <- france_norme %>%
   group_by(year) %>%
@@ -12,7 +8,7 @@ resultats_regions_annee <- france_norme %>%
     non_conformes_usa = sum(non_conforme_usa, na.rm = TRUE)
   ) %>%
   mutate(
-    region = "Régions",  # Ajouter une colonne "region" pour les régions regroupées
+    region = "Régions",
     pourcentage_france = (non_conformes_france / total_prelevements) * 100,
     pourcentage_danemark = (non_conformes_danemark / total_prelevements) * 100,
     pourcentage_usa = (non_conformes_usa / total_prelevements) * 100
@@ -68,7 +64,7 @@ ggplot(donnees_long, aes(x = year, y = pourcentage_non_conformes, color = reglem
     plot.title = element_text(size = 16, face = "bold"),
     plot.subtitle = element_text(size = 12)
   ) +
-  scale_x_continuous(breaks = unique(donnees_long$year))  # Afficher toutes les années sur l'axe des x
+  scale_x_continuous(breaks = unique(donnees_long$year))
 
 
 # Agréger les données par année et par région
@@ -103,7 +99,7 @@ donnees_long_regions <- resultats_region_annee %>%
 ggplot(donnees_long_regions, aes(x = year, y = pourcentage_non_conformes, color = reglementation)) +
   geom_line(size = 1) +
   geom_point(size = 2) +
-  facet_wrap(~region) +  # Un graphique par région
+  facet_wrap(~region) +
   labs(
     title = "Évolution du pourcentage de prélèvements non conformes par année et par région",
     x = "Année",
@@ -116,14 +112,10 @@ ggplot(donnees_long_regions, aes(x = year, y = pourcentage_non_conformes, color 
     plot.title = element_text(size = 16, face = "bold"),
     plot.subtitle = element_text(size = 12)
   ) +
-  scale_x_continuous(breaks = unique(donnees_long_regions$year))  # Afficher toutes les années sur l'axe des x
+  scale_x_continuous(breaks = unique(donnees_long_regions$year))
 
-# Exporter les résultats en CSV
 write_csv(resultats_region_annee, file = "../Data/reglementations/resultats_region_annee.csv")
 #write_csv(resultats_region, file = "../Data/reglementations/resultats_region.csv")
-
-
-
 
 rm(resultats_regions_annee)
 rm(resultats_region_annee)

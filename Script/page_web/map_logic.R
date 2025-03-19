@@ -48,8 +48,8 @@ create_map <- function(input, data, regle) {
       opacity = 1,
       weight = 1,
       fillColor = ~ifelse(
-        regle == "France" & non_conforme_france == TRUE, "red",  # Si "France" et non conforme, rouge
-        ifelse(regle == "USA" & non_conforme_usa == TRUE, "red",  # Si "USA" et non conforme, rouge
+        regle == "France" & non_conforme_france == TRUE, "red",
+        ifelse(regle == "USA" & non_conforme_usa == TRUE, "red",
                ifelse(regle == "Danemark" & non_conforme_danemark == TRUE, "red", "orange"))),
       fillOpacity = 1,
       radius = 5,

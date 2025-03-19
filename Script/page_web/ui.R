@@ -72,7 +72,7 @@ ui <- page_fluid(
       id = "prelevement_accordion",
       open = FALSE,
       accordion_panel(
-        "Prélèvements",
+        "Prélèvements (Click sur un prélèvement)",
         card(
           selectInput("date", "Choisir une date : ", choices = NULL),
           tableOutput("table_pfas")
@@ -83,7 +83,7 @@ ui <- page_fluid(
       id = "region_accordion",
       open = FALSE,
       accordion_panel(
-        "Analyse régionale",
+        "Analyse régionale (Click sur une région)",
         card(
           card_header("Informations région"),
           uiOutput("region_name")

@@ -1,7 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-    Shiny.bindAll();
-});
-
 document.querySelectorAll('.nav-link').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();

@@ -6,7 +6,7 @@ leaflet(pfas_df) %>%
   addTiles() %>%
   addCircleMarkers(
     ~lon, ~lat,
-    color = ~ifelse(from_less_than, "orange", "blue"),  # Orange si less_than, bleu sinon
+    color = ~ifelse(from_less_than, "orange", "blue"),
     popup = ~paste(
       "Substance:", substance, "<br>",
       "Valeur finale:", final_value, "<br>",

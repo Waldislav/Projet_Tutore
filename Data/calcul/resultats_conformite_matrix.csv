@@ -1,0 +1,503 @@
+region,year,matrix,total_prelevements,non_conformes_france,non_conformes_danemark,non_conformes_usa,pourcentage_france,pourcentage_danemark,pourcentage_usa
+Auvergne-Rhône-Alpes,2008,Surface water,5,0,5,5,0,100,100
+Auvergne-Rhône-Alpes,2009,Groundwater,11,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2009,Surface water,8,0,6,7,0,75,87.5
+Auvergne-Rhône-Alpes,2010,Groundwater,17,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2010,Surface water,2,0,1,2,0,50,100
+Auvergne-Rhône-Alpes,2011,Groundwater,42,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2011,Surface water,4,0,2,4,0,50,100
+Auvergne-Rhône-Alpes,2012,Surface water,18,0,9,13,0,50,72.22222222222221
+Auvergne-Rhône-Alpes,2013,Surface water,6,0,1,3,0,16.666666666666664,50
+Auvergne-Rhône-Alpes,2014,Drinking water,3,0,3,3,0,100,100
+Auvergne-Rhône-Alpes,2014,Surface water,57,0,4,29,0,7.017543859649122,50.877192982456144
+Auvergne-Rhône-Alpes,2015,Biota,9,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2015,Surface water,102,0,14,60,0,13.725490196078432,58.82352941176471
+Auvergne-Rhône-Alpes,2016,Sediment,3,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2016,Surface water,138,0,18,56,0,13.043478260869565,40.57971014492754
+Auvergne-Rhône-Alpes,2017,Biota,10,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2017,Groundwater,5,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2017,Sediment,6,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2017,Surface water,149,0,34,67,0,22.818791946308725,44.966442953020135
+Auvergne-Rhône-Alpes,2018,Biota,34,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2018,Groundwater,123,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2018,Sediment,1,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2018,Surface water,394,0,89,148,0,22.588832487309645,37.56345177664975
+Auvergne-Rhône-Alpes,2019,Biota,16,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2019,Groundwater,161,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2019,Surface water,509,0,137,193,0,26.91552062868369,37.91748526522593
+Auvergne-Rhône-Alpes,2020,Biota,21,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2020,Groundwater,200,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2020,Surface water,477,0,119,144,0,24.947589098532493,30.18867924528302
+Auvergne-Rhône-Alpes,2021,Biota,6,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2021,Groundwater,206,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2021,Surface water,623,0,171,207,0,27.447833065810595,33.22632423756019
+Auvergne-Rhône-Alpes,2022,Biota,51,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2022,Groundwater,258,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2022,Sediment,2,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2022,Surface water,824,0,679,410,0,82.40291262135922,49.75728155339806
+Auvergne-Rhône-Alpes,2023,Biota,5,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2023,Drinking water,18,1,18,15,5.555555555555555,100,83.33333333333334
+Auvergne-Rhône-Alpes,2023,Groundwater,432,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2023,Sediment,2,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2023,Surface water,699,0,561,373,0,80.25751072961373,53.36194563662375
+Auvergne-Rhône-Alpes,2024,Biota,30,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2024,Drinking water,181,13,130,95,7.18232044198895,71.8232044198895,52.48618784530387
+Auvergne-Rhône-Alpes,2024,Groundwater,364,0,0,0,0,0,0
+Auvergne-Rhône-Alpes,2024,Surface water,40,0,27,14,0,67.5,35
+Auvergne-Rhône-Alpes,2024,Unknown,6,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2009,Groundwater,8,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2009,Surface water,4,0,4,4,0,100,100
+Bourgogne-Franche-Comté,2010,Groundwater,7,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2010,Surface water,2,0,1,1,0,50,50
+Bourgogne-Franche-Comté,2011,Groundwater,30,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2011,Surface water,2,0,1,2,0,50,100
+Bourgogne-Franche-Comté,2012,Surface water,3,0,3,3,0,100,100
+Bourgogne-Franche-Comté,2013,Surface water,12,4,11,12,33.33333333333333,91.66666666666666,100
+Bourgogne-Franche-Comté,2014,Surface water,10,0,4,4,0,40,40
+Bourgogne-Franche-Comté,2015,Biota,6,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2015,Sediment,1,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2015,Surface water,25,0,21,24,0,84,96
+Bourgogne-Franche-Comté,2016,Sediment,5,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2016,Surface water,154,0,105,54,0,68.18181818181817,35.064935064935064
+Bourgogne-Franche-Comté,2017,Biota,10,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2017,Groundwater,18,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2017,Sediment,5,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2017,Surface water,167,0,134,76,0,80.23952095808383,45.50898203592814
+Bourgogne-Franche-Comté,2018,Biota,14,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2018,Groundwater,18,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2018,Sediment,1,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2018,Surface water,417,0,197,128,0,47.24220623501199,30.69544364508393
+Bourgogne-Franche-Comté,2019,Biota,13,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2019,Groundwater,40,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2019,Sediment,1,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2019,Surface water,258,0,73,60,0,28.294573643410853,23.25581395348837
+Bourgogne-Franche-Comté,2020,Biota,7,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2020,Groundwater,50,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2020,Surface water,465,0,129,78,0,27.741935483870968,16.7741935483871
+Bourgogne-Franche-Comté,2021,Biota,9,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2021,Groundwater,69,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2021,Surface water,271,0,39,37,0,14.391143911439114,13.653136531365314
+Bourgogne-Franche-Comté,2022,Biota,30,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2022,Groundwater,66,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2022,Surface water,565,0,455,220,0,80.53097345132744,38.93805309734513
+Bourgogne-Franche-Comté,2023,Biota,9,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2023,Groundwater,141,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2023,Surface water,445,0,361,202,0,81.12359550561797,45.39325842696629
+Bourgogne-Franche-Comté,2024,Biota,4,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2024,Drinking water,9,0,4,2,0,44.44444444444444,22.22222222222222
+Bourgogne-Franche-Comté,2024,Groundwater,150,0,0,0,0,0,0
+Bourgogne-Franche-Comté,2024,Surface water,232,0,75,20,0,32.327586206896555,8.620689655172415
+Bretagne,2009,Surface water,3,0,3,3,0,100,100
+Bretagne,2010,Surface water,1,0,1,1,0,100,100
+Bretagne,2011,Groundwater,10,0,0,0,0,0,0
+Bretagne,2016,Sediment,5,0,0,0,0,0,0
+Bretagne,2017,Groundwater,13,0,0,0,0,0,0
+Bretagne,2017,Sediment,10,0,0,0,0,0,0
+Bretagne,2018,Biota,27,0,0,0,0,0,0
+Bretagne,2018,Groundwater,26,0,0,0,0,0,0
+Bretagne,2018,Surface water,12,0,12,10,0,100,83.33333333333334
+Bretagne,2019,Biota,1,0,0,0,0,0,0
+Bretagne,2019,Groundwater,39,0,0,0,0,0,0
+Bretagne,2019,Sediment,2,0,0,0,0,0,0
+Bretagne,2019,Surface water,182,0,140,53,0,76.92307692307693,29.120879120879124
+Bretagne,2020,Biota,1,0,0,0,0,0,0
+Bretagne,2020,Groundwater,17,0,0,0,0,0,0
+Bretagne,2020,Surface water,255,0,188,51,0,73.72549019607844,20
+Bretagne,2021,Groundwater,22,0,0,0,0,0,0
+Bretagne,2021,Sediment,1,0,0,0,0,0,0
+Bretagne,2021,Surface water,298,0,193,61,0,64.76510067114094,20.469798657718123
+Bretagne,2022,Groundwater,11,0,0,0,0,0,0
+Bretagne,2022,Sediment,1,0,0,0,0,0,0
+Bretagne,2022,Surface water,163,0,120,60,0,73.61963190184049,36.809815950920246
+Bretagne,2023,Biota,6,0,0,0,0,0,0
+Bretagne,2023,Groundwater,20,0,0,0,0,0,0
+Bretagne,2023,Sediment,1,0,0,0,0,0,0
+Bretagne,2023,Surface water,136,0,93,47,0,68.38235294117648,34.55882352941176
+Bretagne,2024,Biota,1,0,0,0,0,0,0
+Bretagne,2024,Drinking water,2,0,0,0,0,0,0
+Bretagne,2024,Groundwater,20,0,0,0,0,0,0
+Bretagne,2024,Surface water,8,0,3,4,0,37.5,50
+Centre-Val de Loire,2009,Groundwater,4,0,0,0,0,0,0
+Centre-Val de Loire,2009,Surface water,6,0,6,4,0,100,66.66666666666666
+Centre-Val de Loire,2010,Groundwater,3,0,0,0,0,0,0
+Centre-Val de Loire,2010,Surface water,2,0,2,2,0,100,100
+Centre-Val de Loire,2011,Groundwater,7,0,0,0,0,0,0
+Centre-Val de Loire,2013,Surface water,1,0,1,1,0,100,100
+Centre-Val de Loire,2015,Sediment,3,0,0,0,0,0,0
+Centre-Val de Loire,2016,Surface water,169,0,160,74,0,94.67455621301777,43.786982248520715
+Centre-Val de Loire,2017,Groundwater,23,0,0,0,0,0,0
+Centre-Val de Loire,2017,Sediment,7,0,0,0,0,0,0
+Centre-Val de Loire,2017,Surface water,211,0,198,97,0,93.8388625592417,45.97156398104265
+Centre-Val de Loire,2018,Biota,32,0,0,0,0,0,0
+Centre-Val de Loire,2018,Groundwater,11,0,0,0,0,0,0
+Centre-Val de Loire,2018,Sediment,8,0,0,0,0,0,0
+Centre-Val de Loire,2018,Surface water,158,0,134,51,0,84.81012658227847,32.278481012658226
+Centre-Val de Loire,2019,Biota,4,0,0,0,0,0,0
+Centre-Val de Loire,2019,Groundwater,16,0,0,0,0,0,0
+Centre-Val de Loire,2019,Sediment,1,0,0,0,0,0,0
+Centre-Val de Loire,2019,Surface water,311,0,258,92,0,82.95819935691318,29.581993569131832
+Centre-Val de Loire,2020,Biota,3,0,0,0,0,0,0
+Centre-Val de Loire,2020,Groundwater,22,0,0,0,0,0,0
+Centre-Val de Loire,2020,Surface water,333,0,279,115,0,83.78378378378379,34.53453453453454
+Centre-Val de Loire,2021,Biota,8,0,0,0,0,0,0
+Centre-Val de Loire,2021,Groundwater,26,0,0,0,0,0,0
+Centre-Val de Loire,2021,Sediment,1,0,0,0,0,0,0
+Centre-Val de Loire,2021,Surface water,382,0,225,69,0,58.90052356020943,18.06282722513089
+Centre-Val de Loire,2022,Biota,7,0,0,0,0,0,0
+Centre-Val de Loire,2022,Groundwater,26,0,0,0,0,0,0
+Centre-Val de Loire,2022,Sediment,1,0,0,0,0,0,0
+Centre-Val de Loire,2022,Surface water,342,0,312,139,0,91.2280701754386,40.643274853801174
+Centre-Val de Loire,2023,Biota,4,0,0,0,0,0,0
+Centre-Val de Loire,2023,Groundwater,46,0,0,0,0,0,0
+Centre-Val de Loire,2023,Surface water,302,0,232,117,0,76.82119205298014,38.74172185430464
+Centre-Val de Loire,2024,Drinking water,3,0,2,0,0,66.66666666666666,0
+Centre-Val de Loire,2024,Groundwater,64,0,0,0,0,0,0
+Centre-Val de Loire,2024,Surface water,217,0,171,59,0,78.80184331797236,27.188940092165897
+Centre-Val de Loire,2024,Unknown,2,0,0,0,0,0,0
+Corse,2018,Groundwater,3,0,0,0,0,0,0
+Corse,2018,Surface water,3,0,0,0,0,0,0
+Corse,2019,Groundwater,5,0,0,0,0,0,0
+Corse,2019,Surface water,4,0,0,0,0,0,0
+Corse,2020,Groundwater,4,0,0,0,0,0,0
+Corse,2020,Surface water,2,0,0,0,0,0,0
+Corse,2021,Groundwater,4,0,0,0,0,0,0
+Corse,2021,Surface water,2,0,0,0,0,0,0
+Corse,2022,Groundwater,3,0,0,0,0,0,0
+Corse,2022,Surface water,10,0,7,3,0,70,30
+Corse,2023,Groundwater,5,0,0,0,0,0,0
+Corse,2023,Surface water,9,0,6,4,0,66.66666666666666,44.44444444444444
+Corse,2024,Groundwater,3,0,0,0,0,0,0
+Grand Est,2006,Surface water,1,0,1,1,0,100,100
+Grand Est,2008,Surface water,15,0,15,14,0,100,93.33333333333331
+Grand Est,2009,Groundwater,18,0,0,0,0,0,0
+Grand Est,2009,Surface water,19,0,19,19,0,100,100
+Grand Est,2010,Groundwater,2,0,0,0,0,0,0
+Grand Est,2010,Surface water,16,0,13,14,0,81.25,87.5
+Grand Est,2011,Groundwater,17,0,0,0,0,0,0
+Grand Est,2011,Surface water,13,0,13,11,0,100,84.61538461538461
+Grand Est,2012,Surface water,16,0,16,13,0,100,81.25
+Grand Est,2013,Surface water,32,1,32,19,3.125,100,59.375
+Grand Est,2014,Surface water,19,0,19,9,0,100,47.368421052631575
+Grand Est,2015,Groundwater,175,0,0,0,0,0,0
+Grand Est,2015,Surface water,19,0,17,5,0,89.47368421052632,26.31578947368421
+Grand Est,2016,Groundwater,1138,0,0,0,0,0,0
+Grand Est,2016,Sediment,1,0,0,0,0,0,0
+Grand Est,2016,Surface water,556,0,507,134,0,91.18705035971225,24.100719424460433
+Grand Est,2017,Groundwater,202,0,0,0,0,0,0
+Grand Est,2017,Sediment,4,0,0,0,0,0,0
+Grand Est,2017,Surface water,1189,0,1072,288,0,90.15979814970564,24.222035323801514
+Grand Est,2018,Groundwater,178,0,0,0,0,0,0
+Grand Est,2018,Surface water,1220,1,953,464,0.08196721311475409,78.11475409836065,38.0327868852459
+Grand Est,2019,Biota,4,0,0,0,0,0,0
+Grand Est,2019,Groundwater,307,0,0,0,0,0,0
+Grand Est,2019,Surface water,2006,0,1505,737,0,75.02492522432702,36.73978065802592
+Grand Est,2020,Biota,5,0,0,0,0,0,0
+Grand Est,2020,Groundwater,360,0,0,0,0,0,0
+Grand Est,2020,Surface water,1109,0,851,410,0,76.73579801623085,36.9702434625789
+Grand Est,2021,Biota,2,0,0,0,0,0,0
+Grand Est,2021,Groundwater,430,0,0,0,0,0,0
+Grand Est,2021,Surface water,1273,1,960,364,0.07855459544383347,75.41241162608013,28.59387274155538
+Grand Est,2022,Biota,7,0,0,0,0,0,0
+Grand Est,2022,Groundwater,344,0,0,0,0,0,0
+Grand Est,2022,Surface water,1236,0,1012,347,0,81.87702265372168,28.074433656957932
+Grand Est,2023,Biota,8,0,0,0,0,0,0
+Grand Est,2023,Groundwater,41,0,0,0,0,0,0
+Grand Est,2023,Surface water,366,0,291,82,0,79.50819672131148,22.404371584699454
+Grand Est,2024,Biota,9,0,0,0,0,0,0
+Grand Est,2024,Drinking water,57,31,50,47,54.385964912280706,87.71929824561403,82.45614035087719
+Grand Est,2024,Groundwater,62,0,0,0,0,0,0
+Grand Est,2024,Surface water,384,0,168,12,0,43.75,3.125
+Grand Est,2024,Unknown,1,0,0,0,0,0,0
+Guadeloupe,2012,Groundwater,3,0,0,0,0,0,0
+Guadeloupe,2019,Surface water,1,0,0,0,0,0,0
+Guadeloupe,2022,Groundwater,2,0,0,0,0,0,0
+Guyane,2012,Groundwater,6,0,0,0,0,0,0
+Guyane,2017,Groundwater,1,0,0,0,0,0,0
+Guyane,2019,Surface water,1,0,1,0,0,100,0
+Guyane,2023,Surface water,1,0,0,0,0,0,0
+Guyane,2024,Surface water,1,0,0,0,0,0,0
+Hauts-de-France,2009,Groundwater,5,0,0,0,0,0,0
+Hauts-de-France,2010,Groundwater,7,0,0,0,0,0,0
+Hauts-de-France,2010,Surface water,2,0,2,2,0,100,100
+Hauts-de-France,2011,Groundwater,18,0,0,0,0,0,0
+Hauts-de-France,2012,Surface water,1,0,0,1,0,0,100
+Hauts-de-France,2013,Surface water,5,0,4,5,0,80,100
+Hauts-de-France,2014,Groundwater,93,0,0,0,0,0,0
+Hauts-de-France,2016,Surface water,542,0,489,157,0,90.22140221402212,28.96678966789668
+Hauts-de-France,2017,Groundwater,39,0,0,0,0,0,0
+Hauts-de-France,2017,Sediment,1,0,0,0,0,0,0
+Hauts-de-France,2017,Surface water,532,0,471,163,0,88.53383458646617,30.639097744360903
+Hauts-de-France,2018,Groundwater,95,0,0,0,0,0,0
+Hauts-de-France,2018,Surface water,602,0,512,196,0,85.04983388704319,32.55813953488372
+Hauts-de-France,2019,Biota,3,0,0,0,0,0,0
+Hauts-de-France,2019,Groundwater,106,0,0,0,0,0,0
+Hauts-de-France,2019,Surface water,243,0,178,62,0,73.25102880658436,25.514403292181072
+Hauts-de-France,2020,Biota,1,0,0,0,0,0,0
+Hauts-de-France,2020,Groundwater,142,0,0,0,0,0,0
+Hauts-de-France,2020,Surface water,439,0,331,111,0,75.39863325740319,25.28473804100228
+Hauts-de-France,2021,Biota,3,0,0,0,0,0,0
+Hauts-de-France,2021,Groundwater,151,0,0,0,0,0,0
+Hauts-de-France,2021,Surface water,320,1,234,92,0.3125,73.125,28.749999999999996
+Hauts-de-France,2022,Biota,2,0,0,0,0,0,0
+Hauts-de-France,2022,Groundwater,110,0,0,0,0,0,0
+Hauts-de-France,2022,Surface water,617,0,534,187,0,86.54781199351702,30.30794165316045
+Hauts-de-France,2023,Biota,7,0,0,0,0,0,0
+Hauts-de-France,2023,Groundwater,80,0,0,0,0,0,0
+Hauts-de-France,2023,Surface water,754,0,642,264,0,85.14588859416446,35.0132625994695
+Hauts-de-France,2024,Biota,4,0,0,0,0,0,0
+Hauts-de-France,2024,Drinking water,3,0,1,1,0,33.33333333333333,33.33333333333333
+Hauts-de-France,2024,Groundwater,27,0,0,0,0,0,0
+Hauts-de-France,2024,Surface water,533,0,322,60,0,60.41275797373359,11.25703564727955
+La Réunion,2012,Groundwater,4,0,0,0,0,0,0
+La Réunion,2013,Groundwater,4,0,0,0,0,0,0
+La Réunion,2013,Surface water,2,0,2,2,0,100,100
+La Réunion,2017,Groundwater,6,0,0,0,0,0,0
+La Réunion,2018,Groundwater,31,0,0,0,0,0,0
+La Réunion,2018,Surface water,55,0,29,23,0,52.72727272727272,41.81818181818181
+La Réunion,2019,Groundwater,25,0,0,0,0,0,0
+La Réunion,2019,Surface water,4,0,4,0,0,100,0
+La Réunion,2020,Groundwater,36,0,0,0,0,0,0
+La Réunion,2020,Surface water,43,0,20,10,0,46.51162790697674,23.25581395348837
+La Réunion,2021,Groundwater,44,0,0,0,0,0,0
+La Réunion,2021,Surface water,14,0,8,1,0,57.14285714285714,7.142857142857142
+La Réunion,2022,Groundwater,65,0,0,0,0,0,0
+La Réunion,2023,Groundwater,12,0,0,0,0,0,0
+La Réunion,2024,Groundwater,9,0,0,0,0,0,0
+Martinique,2012,Groundwater,7,0,0,0,0,0,0
+Martinique,2013,Surface water,7,0,3,5,0,42.857142857142854,71.42857142857143
+Martinique,2015,Surface water,1,0,0,0,0,0,0
+Martinique,2022,Groundwater,7,0,0,0,0,0,0
+Martinique,2023,Groundwater,18,0,0,0,0,0,0
+Normandie,2006,Surface water,1,0,0,1,0,0,100
+Normandie,2009,Groundwater,1,0,0,0,0,0,0
+Normandie,2009,Surface water,2,0,2,1,0,100,50
+Normandie,2010,Groundwater,2,0,0,0,0,0,0
+Normandie,2011,Groundwater,9,0,0,0,0,0,0
+Normandie,2012,Surface water,6,0,4,6,0,66.66666666666666,100
+Normandie,2013,Surface water,11,0,10,11,0,90.9090909090909,100
+Normandie,2015,Sediment,5,0,0,0,0,0,0
+Normandie,2016,Sediment,1,0,0,0,0,0,0
+Normandie,2016,Surface water,531,0,452,120,0,85.12241054613936,22.598870056497177
+Normandie,2017,Groundwater,37,0,0,0,0,0,0
+Normandie,2017,Sediment,1,0,0,0,0,0,0
+Normandie,2017,Surface water,506,0,456,122,0,90.1185770750988,24.110671936758894
+Normandie,2018,Surface water,332,0,308,78,0,92.7710843373494,23.49397590361446
+Normandie,2019,Biota,5,0,0,0,0,0,0
+Normandie,2019,Groundwater,3,0,0,0,0,0,0
+Normandie,2019,Surface water,489,0,365,83,0,74.64212678936605,16.973415132924334
+Normandie,2020,Groundwater,63,0,0,0,0,0,0
+Normandie,2020,Surface water,600,0,422,93,0,70.33333333333334,15.5
+Normandie,2021,Biota,2,0,0,0,0,0,0
+Normandie,2021,Groundwater,65,0,0,0,0,0,0
+Normandie,2021,Surface water,584,0,495,109,0,84.76027397260275,18.66438356164383
+Normandie,2022,Biota,5,0,0,0,0,0,0
+Normandie,2022,Groundwater,57,0,0,0,0,0,0
+Normandie,2022,Surface water,778,0,655,197,0,84.19023136246787,25.32133676092545
+Normandie,2023,Biota,13,0,0,0,0,0,0
+Normandie,2023,Groundwater,59,0,0,0,0,0,0
+Normandie,2023,Sediment,1,0,0,0,0,0,0
+Normandie,2023,Surface water,711,0,570,131,0,80.16877637130801,18.424753867791843
+Normandie,2024,Biota,11,0,0,0,0,0,0
+Normandie,2024,Groundwater,66,0,0,0,0,0,0
+Normandie,2024,Surface water,834,0,515,91,0,61.750599520383695,10.911270983213427
+Nouvelle-Aquitaine,2009,Groundwater,2,0,0,0,0,0,0
+Nouvelle-Aquitaine,2009,Surface water,5,0,5,5,0,100,100
+Nouvelle-Aquitaine,2010,Groundwater,2,0,0,0,0,0,0
+Nouvelle-Aquitaine,2010,Surface water,5,0,5,5,0,100,100
+Nouvelle-Aquitaine,2011,Groundwater,55,0,0,0,0,0,0
+Nouvelle-Aquitaine,2011,Surface water,2,0,2,2,0,100,100
+Nouvelle-Aquitaine,2012,Sea water,1,0,0,0,0,0,0
+Nouvelle-Aquitaine,2012,Surface water,3,0,3,3,0,100,100
+Nouvelle-Aquitaine,2015,Groundwater,1,0,0,0,0,0,0
+Nouvelle-Aquitaine,2015,Surface water,12,0,12,12,0,100,100
+Nouvelle-Aquitaine,2016,Groundwater,6,0,0,0,0,0,0
+Nouvelle-Aquitaine,2016,Sediment,3,0,0,0,0,0,0
+Nouvelle-Aquitaine,2016,Surface water,61,0,6,54,0,9.836065573770492,88.52459016393442
+Nouvelle-Aquitaine,2017,Groundwater,18,0,0,0,0,0,0
+Nouvelle-Aquitaine,2017,Sediment,4,0,0,0,0,0,0
+Nouvelle-Aquitaine,2017,Surface water,32,0,9,20,0,28.125,62.5
+Nouvelle-Aquitaine,2018,Biota,14,0,0,0,0,0,0
+Nouvelle-Aquitaine,2018,Groundwater,32,0,0,0,0,0,0
+Nouvelle-Aquitaine,2018,Surface water,112,0,36,64,0,32.142857142857146,57.14285714285714
+Nouvelle-Aquitaine,2019,Biota,17,0,0,0,0,0,0
+Nouvelle-Aquitaine,2019,Groundwater,77,0,0,0,0,0,0
+Nouvelle-Aquitaine,2019,Surface water,209,0,142,40,0,67.94258373205741,19.138755980861244
+Nouvelle-Aquitaine,2020,Biota,15,0,0,0,0,0,0
+Nouvelle-Aquitaine,2020,Groundwater,77,0,0,0,0,0,0
+Nouvelle-Aquitaine,2020,Surface water,239,0,158,42,0,66.10878661087865,17.573221757322173
+Nouvelle-Aquitaine,2021,Biota,11,0,0,0,0,0,0
+Nouvelle-Aquitaine,2021,Groundwater,114,0,0,0,0,0,0
+Nouvelle-Aquitaine,2021,Surface water,275,0,146,48,0,53.090909090909086,17.454545454545457
+Nouvelle-Aquitaine,2022,Biota,55,0,0,0,0,0,0
+Nouvelle-Aquitaine,2022,Groundwater,116,0,0,0,0,0,0
+Nouvelle-Aquitaine,2022,Sediment,2,0,0,0,0,0,0
+Nouvelle-Aquitaine,2022,Surface water,152,0,118,43,0,77.63157894736842,28.289473684210524
+Nouvelle-Aquitaine,2023,Biota,42,0,0,0,0,0,0
+Nouvelle-Aquitaine,2023,Groundwater,161,0,0,0,0,0,0
+Nouvelle-Aquitaine,2023,Sediment,1,0,0,0,0,0,0
+Nouvelle-Aquitaine,2023,Surface water,103,0,69,37,0,66.99029126213593,35.92233009708738
+Nouvelle-Aquitaine,2024,Biota,1,0,0,0,0,0,0
+Nouvelle-Aquitaine,2024,Drinking water,4,1,2,1,25,50,25
+Nouvelle-Aquitaine,2024,Groundwater,151,0,0,0,0,0,0
+Nouvelle-Aquitaine,2024,Surface water,6,0,0,1,0,0,16.666666666666664
+Occitanie,2009,Groundwater,1,0,0,0,0,0,0
+Occitanie,2009,Surface water,17,0,6,2,0,35.294117647058826,11.76470588235294
+Occitanie,2010,Groundwater,2,0,0,0,0,0,0
+Occitanie,2010,Surface water,3,0,2,3,0,66.66666666666666,100
+Occitanie,2011,Groundwater,50,0,0,0,0,0,0
+Occitanie,2012,Surface water,18,0,8,16,0,44.44444444444444,88.88888888888889
+Occitanie,2013,Surface water,8,0,4,7,0,50,87.5
+Occitanie,2014,Drinking water,3,0,1,1,0,33.33333333333333,33.33333333333333
+Occitanie,2014,Surface water,20,0,2,9,0,10,45
+Occitanie,2015,Biota,1,0,0,0,0,0,0
+Occitanie,2015,Surface water,56,0,9,29,0,16.071428571428573,51.78571428571429
+Occitanie,2016,Groundwater,4,0,0,0,0,0,0
+Occitanie,2016,Surface water,83,0,8,22,0,9.63855421686747,26.506024096385545
+Occitanie,2017,Biota,9,0,0,0,0,0,0
+Occitanie,2017,Groundwater,7,0,0,0,0,0,0
+Occitanie,2017,Surface water,162,0,49,40,0,30.246913580246915,24.69135802469136
+Occitanie,2018,Biota,8,0,0,0,0,0,0
+Occitanie,2018,Groundwater,43,0,0,0,0,0,0
+Occitanie,2018,Surface water,335,0,99,65,0,29.55223880597015,19.402985074626866
+Occitanie,2019,Biota,33,0,0,0,0,0,0
+Occitanie,2019,Groundwater,47,0,0,0,0,0,0
+Occitanie,2019,Surface water,318,0,64,63,0,20.125786163522015,19.81132075471698
+Occitanie,2020,Biota,20,0,0,0,0,0,0
+Occitanie,2020,Groundwater,56,0,0,0,0,0,0
+Occitanie,2020,Surface water,372,0,85,76,0,22.849462365591396,20.43010752688172
+Occitanie,2021,Biota,21,0,0,0,0,0,0
+Occitanie,2021,Groundwater,69,0,0,0,0,0,0
+Occitanie,2021,Sediment,1,0,0,0,0,0,0
+Occitanie,2021,Surface water,402,0,86,85,0,21.393034825870647,21.144278606965177
+Occitanie,2022,Biota,72,0,0,0,0,0,0
+Occitanie,2022,Groundwater,81,0,0,0,0,0,0
+Occitanie,2022,Surface water,416,0,319,153,0,76.6826923076923,36.77884615384615
+Occitanie,2023,Biota,64,0,0,0,0,0,0
+Occitanie,2023,Groundwater,97,0,0,0,0,0,0
+Occitanie,2023,Sediment,2,0,0,0,0,0,0
+Occitanie,2023,Surface water,292,0,203,143,0,69.52054794520548,48.97260273972603
+Occitanie,2024,Biota,2,0,0,0,0,0,0
+Occitanie,2024,Drinking water,46,0,22,8,0,47.82608695652174,17.391304347826086
+Occitanie,2024,Groundwater,82,0,0,0,0,0,0
+Occitanie,2024,Surface water,9,0,0,0,0,0,0
+Pays de la Loire,2006,Surface water,4,0,0,0,0,0,0
+Pays de la Loire,2009,Surface water,18,0,17,16,0,94.44444444444444,88.88888888888889
+Pays de la Loire,2010,Surface water,3,0,1,2,0,33.33333333333333,66.66666666666666
+Pays de la Loire,2011,Groundwater,21,0,0,0,0,0,0
+Pays de la Loire,2015,Drinking water,1,0,0,0,0,0,0
+Pays de la Loire,2015,Surface water,5,0,5,5,0,100,100
+Pays de la Loire,2016,Sediment,6,0,0,0,0,0,0
+Pays de la Loire,2017,Groundwater,34,0,0,0,0,0,0
+Pays de la Loire,2017,Sediment,10,0,0,0,0,0,0
+Pays de la Loire,2017,Surface water,5,0,5,5,0,100,100
+Pays de la Loire,2018,Biota,14,0,0,0,0,0,0
+Pays de la Loire,2018,Groundwater,37,0,0,0,0,0,0
+Pays de la Loire,2018,Sediment,4,0,0,0,0,0,0
+Pays de la Loire,2018,Surface water,2,0,2,2,0,100,100
+Pays de la Loire,2019,Biota,9,0,0,0,0,0,0
+Pays de la Loire,2019,Groundwater,32,0,0,0,0,0,0
+Pays de la Loire,2019,Sediment,1,0,0,0,0,0,0
+Pays de la Loire,2019,Surface water,275,0,253,113,0,92,41.090909090909086
+Pays de la Loire,2020,Biota,4,0,0,0,0,0,0
+Pays de la Loire,2020,Groundwater,13,0,0,0,0,0,0
+Pays de la Loire,2020,Sediment,1,0,0,0,0,0,0
+Pays de la Loire,2020,Surface water,184,0,170,65,0,92.3913043478261,35.32608695652174
+Pays de la Loire,2021,Biota,6,0,0,0,0,0,0
+Pays de la Loire,2021,Groundwater,25,0,0,0,0,0,0
+Pays de la Loire,2021,Sediment,2,0,0,0,0,0,0
+Pays de la Loire,2021,Surface water,277,0,224,69,0,80.86642599277978,24.90974729241877
+Pays de la Loire,2022,Groundwater,23,0,0,0,0,0,0
+Pays de la Loire,2022,Sediment,3,0,0,0,0,0,0
+Pays de la Loire,2022,Surface water,425,0,349,149,0,82.11764705882352,35.05882352941177
+Pays de la Loire,2023,Biota,22,0,0,0,0,0,0
+Pays de la Loire,2023,Groundwater,40,0,0,0,0,0,0
+Pays de la Loire,2023,Surface water,363,0,216,112,0,59.50413223140496,30.85399449035813
+Pays de la Loire,2024,Biota,1,0,0,0,0,0,0
+Pays de la Loire,2024,Drinking water,2,0,0,0,0,0,0
+Pays de la Loire,2024,Groundwater,54,0,0,0,0,0,0
+Pays de la Loire,2024,Surface water,8,0,4,0,0,50,0
+Provence-Alpes-Côte d'Azur,2009,Groundwater,2,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2009,Surface water,5,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2010,Groundwater,2,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2011,Groundwater,22,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2012,Surface water,2,0,1,1,0,50,50
+Provence-Alpes-Côte d'Azur,2013,Surface water,35,0,0,10,0,0,28.57142857142857
+Provence-Alpes-Côte d'Azur,2014,Drinking water,1,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2014,Surface water,15,0,9,12,0,60,80
+Provence-Alpes-Côte d'Azur,2015,Surface water,70,0,52,62,0,74.28571428571429,88.57142857142857
+Provence-Alpes-Côte d'Azur,2016,Surface water,103,0,22,38,0,21.35922330097087,36.89320388349515
+Provence-Alpes-Côte d'Azur,2017,Biota,8,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2017,Surface water,81,0,50,54,0,61.72839506172839,66.66666666666666
+Provence-Alpes-Côte d'Azur,2018,Biota,6,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2018,Groundwater,24,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2018,Surface water,244,0,41,124,0,16.80327868852459,50.81967213114754
+Provence-Alpes-Côte d'Azur,2019,Biota,9,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2019,Groundwater,36,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2019,Sediment,3,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2019,Surface water,251,0,25,122,0,9.9601593625498,48.60557768924303
+Provence-Alpes-Côte d'Azur,2019,Unknown,1,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2020,Biota,7,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2020,Groundwater,38,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2020,Surface water,215,0,12,120,0,5.5813953488372094,55.81395348837209
+Provence-Alpes-Côte d'Azur,2021,Biota,10,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2021,Groundwater,37,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2021,Surface water,314,0,63,153,0,20.063694267515924,48.72611464968153
+Provence-Alpes-Côte d'Azur,2022,Biota,15,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2022,Groundwater,38,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2022,Sediment,1,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2022,Surface water,305,0,272,188,0,89.18032786885246,61.63934426229508
+Provence-Alpes-Côte d'Azur,2023,Biota,8,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2023,Drinking water,5,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2023,Groundwater,74,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2023,Surface water,242,0,184,146,0,76.03305785123968,60.33057851239669
+Provence-Alpes-Côte d'Azur,2024,Drinking water,89,1,11,4,1.1235955056179776,12.359550561797752,4.49438202247191
+Provence-Alpes-Côte d'Azur,2024,Groundwater,71,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2024,Surface water,4,0,0,0,0,0,0
+Provence-Alpes-Côte d'Azur,2024,Unknown,1,0,0,0,0,0,0
+Île-de-France,2006,Surface water,1,0,0,1,0,0,100
+Île-de-France,2008,Surface water,1,0,1,1,0,100,100
+Île-de-France,2009,Groundwater,3,0,0,0,0,0,0
+Île-de-France,2009,Surface water,23,0,20,21,0,86.95652173913044,91.30434782608695
+Île-de-France,2010,Groundwater,5,0,0,0,0,0,0
+Île-de-France,2010,Surface water,12,0,9,10,0,75,83.33333333333334
+Île-de-France,2011,Groundwater,5,0,0,0,0,0,0
+Île-de-France,2012,Surface water,3,0,2,3,0,66.66666666666666,100
+Île-de-France,2013,Surface water,10,2,10,10,20,100,100
+Île-de-France,2014,Drinking water,1,1,1,1,100,100,100
+Île-de-France,2015,Drinking water,1,0,1,0,0,100,0
+Île-de-France,2016,Surface water,739,1,713,368,0.13531799729364005,96.48173207036535,49.79702300405954
+Île-de-France,2017,Groundwater,56,0,0,0,0,0,0
+Île-de-France,2017,Sediment,3,0,0,0,0,0,0
+Île-de-France,2017,Surface water,781,0,757,388,0,96.9270166453265,49.67989756722151
+Île-de-France,2018,Groundwater,1,0,0,0,0,0,0
+Île-de-France,2018,Surface water,809,0,768,411,0,94.93201483312733,50.803461063040785
+Île-de-France,2019,Biota,10,0,0,0,0,0,0
+Île-de-France,2019,Sediment,2,0,0,0,0,0,0
+Île-de-France,2019,Surface water,697,0,651,330,0,93.4002869440459,47.34576757532281
+Île-de-France,2020,Groundwater,62,0,0,0,0,0,0
+Île-de-France,2020,Surface water,797,0,677,260,0,84.9435382685069,32.622333751568384
+Île-de-France,2021,Biota,7,0,0,0,0,0,0
+Île-de-France,2021,Groundwater,58,0,0,0,0,0,0
+Île-de-France,2021,Sediment,1,0,0,0,0,0,0
+Île-de-France,2021,Surface water,638,0,554,202,0,86.83385579937304,31.661442006269592
+Île-de-France,2022,Biota,3,0,0,0,0,0,0
+Île-de-France,2022,Groundwater,65,0,0,0,0,0,0
+Île-de-France,2022,Sediment,1,0,0,0,0,0,0
+Île-de-France,2022,Surface water,901,0,834,379,0,92.5638179800222,42.06437291897892
+Île-de-France,2023,Biota,12,0,0,0,0,0,0
+Île-de-France,2023,Groundwater,49,0,0,0,0,0,0
+Île-de-France,2023,Sediment,1,0,0,0,0,0,0
+Île-de-France,2023,Surface water,548,0,483,215,0,88.13868613138686,39.23357664233576
+Île-de-France,2024,Biota,6,0,0,0,0,0,0
+Île-de-France,2024,Groundwater,65,0,0,0,0,0,0
+Île-de-France,2024,Surface water,626,0,549,185,0,87.69968051118211,29.55271565495208
+NA,2016,Surface water,21,0,19,3,0,90.47619047619048,14.285714285714285
+NA,2017,Surface water,75,0,67,22,0,89.33333333333333,29.333333333333332
+NA,2018,Surface water,51,0,42,24,0,82.35294117647058,47.05882352941176
+NA,2019,Surface water,98,0,76,45,0,77.55102040816327,45.91836734693878
+NA,2020,Surface water,76,0,55,33,0,72.36842105263158,43.42105263157895
+NA,2021,Biota,1,0,0,0,0,0,0
+NA,2021,Surface water,84,0,64,23,0,76.19047619047619,27.380952380952383
+NA,2022,Biota,3,0,0,0,0,0,0
+NA,2022,Surface water,79,0,66,21,0,83.54430379746836,26.582278481012654
+NA,2023,Surface water,22,0,17,8,0,77.27272727272727,36.36363636363637

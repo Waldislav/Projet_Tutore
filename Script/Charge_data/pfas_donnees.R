@@ -16,7 +16,7 @@ restmp <- france %>%
 restmp <- as.data.frame(restmp)
 
 # Tous les pfas avec une valeur significative
-pfas <- restmp[!is.na(restmp$value)]
+pfas <- restmp[!is.na(restmp$value), ]
 
 # Groupe les pfas entre eux et y ajoute un pourcentage de répartition
 pfas_group <- pfas %>%
@@ -35,69 +35,4 @@ pfas_group_filtre <- pfas_group %>%
 # Trie les groupes par leur %
 pfas_group_filtre$substance <- factor(pfas_group_filtre$substance, levels = pfas_group_filtre$substance[order(-pfas_group_filtre$percentage)])
 
-
-producteur_count <- producteur %>%
-  group_by(region) %>%
-  summarise(nb_producteur = n())
-
-utilisateur_count <- user %>%
-  group_by(region) %>%
-  summarise(nb_utilisateurs = n())
-
-# Regrouper les données PFAS par région et année (comme avant)
-regions_sum_pfas <- pfas %>%
-  group_by(region) %>%
-  filter(!is.na(region)) %>%
-  summarise(
-    total_value = sum(value, na.rm = TRUE),  # Somme des valeurs PFAS par région et année
-    nb_pfas = n()                            # Nombre de PFAS par région et année
-  ) %>%
-  ungroup()
-
-regions_sum_pfas <- regions_sum_pfas %>%
-  left_join(producteur_count, by = c("region" = "region")) %>%
-  left_join(utilisateur_count, by = c("region" = "region"))
-
-library(data.table)
-setDT(france_norme)
-setDT(pfas)
-
- 
-generate_row_dt <- function(row, pfas) {
-  pfas_filtered <- pfas[rowid == row$rowid]
-  
-  if (nrow(pfas_filtered) == 0) {
-    return("Aucune donnée PFAS")
-  }
-  
-  paste0(
-    "<table border='1' style='border-collapse: collapse; width: 100%;'>",
-    "<tr><th>Substance</th><th>Valeur</th></tr>",
-    paste0(
-      "<tr><td>", 
-      #ifelse(pfas_filtered$substance == row$substance, 
-      #      paste0(pfas_filtered$substance), 
-      pfas_filtered$substance,
-      "</td><td>", 
-      pfas_filtered$value, 
-      pfas_filtered$unit, 
-      "</td></tr>", collapse = ""
-    ),
-    "</table>"
-  )
-}
-
-# Appliquer la génération de tableau pour chaque ligne
-france_norme[, tableau := purrr::map_chr(.I, function(i) generate_row_dt(france_norme[i, ], pfas))]
-
-france_conformite_subset <- france_norme %>%
-  select(rowid, non_conforme_france, non_conforme_usa, non_conforme_danemark)
-
-pfas <- pfas %>%
-  left_join(france_conformite_subset, by = "rowid")
-
-# Tableau temporaire, on le supprime pour ne pas surcharger
-rm(producteur_count)
-rm(utilisateur_count)
 rm(restmp)
-rm(france_conformite_subset)

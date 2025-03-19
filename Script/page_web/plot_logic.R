@@ -1,17 +1,14 @@
-source("Script/page_web/helpers.R")  # Charger les fonctions utilitaires
+source("Script/page_web/helpers.R")
 
 create_combined_plot <- function(region_id, selected_substance, show_prelevements, show_pfas_total, show_selected_pfas) {
   req(region_id)
   
-  # Calculer les données nécessaires
   year_counts <- calculate_prelevements(region_id)
   pfas_summary <- calculate_pfas_total(region_id)
   selected_pfas_summary <- calculate_selected_pfas(region_id, selected_substance)
   
-  # Adapter les échelles
   scaling_factor <- max(year_counts$count) / max(pfas_summary$pfas_sum)
   
-  # Créer le graphique combiné
   p <- ggplot() +
     scale_y_continuous(
       name = "Nombre de prélèvements",
@@ -26,7 +23,6 @@ create_combined_plot <- function(region_id, selected_substance, show_prelevement
     ) +
     theme_minimal()
   
-  # Ajouter les courbes en fonction des cases cochées
   if (show_prelevements) {
     p <- p +
       geom_line(data = year_counts, aes(x = year, y = count, color = "Prélèvements"), size = 1) +
@@ -45,7 +41,6 @@ create_combined_plot <- function(region_id, selected_substance, show_prelevement
       geom_point(data = selected_pfas_summary, aes(x = year, y = selected_pfas_sum * scaling_factor, color = selected_substance), size = 2)
   }
   
-  # Définir les couleurs pour la légende
   colors <- c()
   if (show_prelevements) colors <- c(colors, "Prélèvements" = "steelblue")
   if (show_pfas_total) colors <- c(colors, "Somme des PFAS" = "red")
