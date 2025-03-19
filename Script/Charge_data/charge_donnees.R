@@ -1,9 +1,7 @@
 # Chargement des données nécessaire aux traitements 
 
-regions <- st_read("../regions.gpkg")
-pays <- st_read("../countries.gpkg")
-pays <- filter(pays, ADMIN == "France")
-villes <- read_csv("../Data/villes.csv")
+regions <- st_read("regions.gpkg")
+villes <- read_csv("Data/villes.csv")
 
 # Fonctions de traitements
 source("Charge_data/fonctions_filtre.R")

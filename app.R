@@ -1,7 +1,8 @@
 #print(getwd())
 #setwd("Script")
 #print(getwd())
-
+#Rprof("profiling_output.txt")
 source("Script/appWeb.R")
+#Rprof(NULL)
 print("4")
 shinyApp(ui = ui, server = server)
