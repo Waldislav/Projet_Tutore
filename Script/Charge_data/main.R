@@ -17,3 +17,5 @@ source("Charge_data/pfas_donnees.R")
 
 # Réalises les dataframes nécessaires aux stats par régions
 source("Charge_data/stat_region.R")
+
+source("Charge_data/stat_user_producteur.R")

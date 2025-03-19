@@ -30,4 +30,5 @@ user <- fread("Data/reglementations/user.csv")
 year_counts <- fread("Data/reglementations/year_counts.csv")
 pfas_group_filtre$substance <- factor(pfas_group_filtre$substance, 
                                       levels = unique(pfas_group_filtre$substance))
+moyenne_globale <- fread("Data/reglementations/moyenne_globale.csv")
 source("Script/Charge_data/stat_region.R")

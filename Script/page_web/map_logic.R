@@ -70,7 +70,13 @@ create_map <- function(input, data, regle) {
       radius = 3,
       fillColor = "grey",
       fillOpacity = 1,
-      popup = ~paste("Utilisateur : ", name)
+      popup = ~paste(
+        "Utilisateur : ", name, "<br>",
+        "Région : ", region, "<br>",
+        "Moyenne des valeurs de PFAS national : ", round(moyenne_globale$moyenne_value[1], digits = 2), "<br>",
+        "Moyenne des valeurs de PFAS de la région : ", round(moyenne_par_region, digits = 2), "<br>",
+        "Moyenne des valeurs de PFAS dans un rayon de 5km : ", round(moyenne_5km, digits = 2)
+      )
     ) %>%
     addCircleMarkers(
       data = producteur,
@@ -79,7 +85,13 @@ create_map <- function(input, data, regle) {
       radius = 3,
       fillColor = "black",
       fillOpacity = 1,
-      popup = ~paste("Producteur : ", name)
+      popup = ~paste(
+        "Producteur : ", name, "<br>",
+        "Région : ", region, "<br>",
+        "Moyenne des valeurs de PFAS national : ", round(moyenne_globale$moyenne_value[1], digits = 2), "<br>",
+        "Moyenne des valeurs de PFAS de la région : ", round(moyenne_par_region, digits = 2), "<br>",
+        "Moyenne des valeurs de PFAS dans un rayon de 5km : ", round(moyenne_5km, digits = 2)
+      )
     ) %>%
     addLegendCustom(
       position = "bottomright",
