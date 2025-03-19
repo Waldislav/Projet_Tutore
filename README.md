@@ -1,6 +1,6 @@
 # Projet_Tutores
  
-Avant de lancer le projet, télécharger les datasets nécessaires au fonctionnement sur le site https://pdh.cnrs.fr/fr/datasets/ ou télécharger extraire le fichier Data.zip et placer tout le contenu dans Data
+Avant de lancer le projet, télécharger les datasets nécessaires au fonctionnement sur le site https://pdh.cnrs.fr/fr/datasets/ ou extraire le fichier Data.zip et placer tout le contenu dans Data
 
 Ensuite lancer app.R pour afficher la page web avec nos analyses.
 
