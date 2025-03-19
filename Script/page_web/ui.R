@@ -11,7 +11,7 @@ ui <- page_fluid(
   includeHTML("Script/page_web/modules/apropos.html"),
   tags$div(id = "analyse-globale",
     class = "section",
-    titlePanel("Analyse globale"),
+    titlePanel("Analyses globales"),
     tags$p("Ici nous avons une analyse totale sur toute la France. Les prélèvements sont tous réunis entre 2006 et 2024. La somme des PFAS sur une année est faite en ng/L ou ng/kg."),
     card(
       card_header("Évolution de toutes les substances"),
@@ -24,7 +24,7 @@ ui <- page_fluid(
         plotOutput("evo_une_substance")
       )
     ),
-    tags$p("On peut également voir comment nos données sont répandues sur nos régions et combien d'utilisateur (en rouge) et de producteur (en noir) sont présents par régions. On peut également voir la diversité des PFAS analysés, les 4.7% d'Autres représentent 30 PFAS différents."),
+    tags$p("On peut également voir comment nos données sont réparties entre nos régions et combien d'utilisateurs (en rouge) et de producteurs (en noir) sont présents par région. On peut également voir la diversité des PFAS analysés, les 4.7% d'Autres représentent 30 PFAS différents."),
     layout_columns(
       card(
         card_header("Répartition des PFAS par région"),
@@ -35,7 +35,7 @@ ui <- page_fluid(
         plotOutput("cam_pfas_plot")  # Ajout du plot ici
       )
     ),
-    tags$p("Les réglementation sont différentes dans chaques pays et chaque milieu dans lequel le prélévement a été effectué a sa propre réglementation."),
+    tags$p("Les réglementations sont différentes dans chaque pays, de plus, chaque milieu dans lequel le prélévement a été effectué a sa propre réglementation."),
     card(
       card_header("Les réglementations en France"),
       plotOutput("france_plot"),    # Nouveau graphique pour la France
@@ -45,14 +45,14 @@ ui <- page_fluid(
   tags$div(id = "analyse-geographique",
     class = "section",
     titlePanel("Analyses spatio-temporelles"),
-    tags$p("Une carte intéractive est fournie pour des analyses plus précise. Un clic sur une région permet d'afficher des détails sur elle dans la partie 'Analyse régionale'."),
+    tags$p("Une carte intéractive est fournie pour des analyses plus précises. Un clic sur une région permet d'afficher des détails sur celle ci dans la partie 'Analyses régionales'."),
     card(
       card_header("Carte de la France"),
       sidebarLayout(
         sidebarPanel(
           selectInput("substance", "Choisir une substance :",
                       c("Tous", unique(pfas$substance))),
-          selectInput("matrix", "Choisir une milieu :",
+          selectInput("matrix", "Choisir un milieu :",
                       c("Tous", unique(pfas$matrix))),
           selectInput("regle", "Choisir une réglementation :",
                       c("France", "USA", "Danemark")),
