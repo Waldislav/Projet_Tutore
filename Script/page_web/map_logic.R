@@ -24,7 +24,7 @@ addLegendCustom <- function(map, position = "bottomright", colors, labels, sizes
 }
 
 create_map <- function(input, data, regle) {
-  leaflet(data) %>%
+  leaflet(data, options = leafletOptions(preferCanvas = TRUE)) %>%
     addTiles() %>%
     addPolygons(
       data = regions,
@@ -43,6 +43,7 @@ create_map <- function(input, data, regle) {
     addCircleMarkers(
       data = data,
       ~lon, ~lat,
+      layerId = ~rowid,
       color = "black",
       opacity = 1,
       weight = 1,
@@ -59,7 +60,7 @@ create_map <- function(input, data, regle) {
         "Ville : ", city, "<br>",
         "Sommes des PFAS : ", pfas_sum, " ", unit, "<br>",
         "Année:", year, "<br>"
-        ,tableau
+        #,tableau
       )
     ) %>%
     addCircleMarkers(

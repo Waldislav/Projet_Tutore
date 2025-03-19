@@ -3,6 +3,7 @@ ui <- page_fluid(
     tags$meta(charset = "UTF-8"),
     tags$meta(name = "viewport", content = "width=device-width, initial-scale=1.0"),
     tags$link(rel = "stylesheet", href = "style.css"),
+    tags$link(rel = "icon", href = "favicon.ico", type = "image/x-icon"),
     tags$title("Étude PFAS"),
     tags$script(src = "script.js")
   ),
@@ -33,11 +34,17 @@ ui <- page_fluid(
         card_header("Répartition des PFAS"),
         plotOutput("cam_pfas_plot")  # Ajout du plot ici
       )
+    ),
+    tags$p("Les réglementation sont différentes dans chaques pays et chaque milieu dans lequel le prélévement a été effectué a sa propre réglementation."),
+    card(
+      card_header("Les réglementations en France"),
+      plotOutput("france_plot"),    # Nouveau graphique pour la France
+      plotOutput("france_matrix_plot")   # Nouveau graphique pour la France par matrice
     )
   ),
   tags$div(id = "analyse-geographique",
     class = "section",
-    titlePanel("Analyse géographique"),
+    titlePanel("Analyses spatio-temporelles"),
     tags$p("Une carte intéractive est fournie pour des analyses plus précise. Un clic sur une région permet d'afficher des détails sur elle dans la partie 'Analyse régionale'."),
     card(
       card_header("Carte de la France"),
@@ -62,6 +69,17 @@ ui <- page_fluid(
         )
       )),
     accordion(
+      id = "prelevement_accordion",
+      open = FALSE,
+      accordion_panel(
+        "Prélèvements",
+        card(
+          selectInput("date", "Choisir une date : ", choices = NULL),
+          tableOutput("table_pfas")
+        )
+      )
+    ),
+    accordion(
       id = "region_accordion",
       open = FALSE,
       accordion_panel(
@@ -71,7 +89,7 @@ ui <- page_fluid(
           uiOutput("region_name")
         ),
         card(
-          card_header("Analyse global sur la région"),
+          card_header("Analyses globales sur la région"),
           layout_columns(
             plotOutput("box_plot"),       # Sortie pour le nouveau graphique en bougies
             plotOutput("combined_plot2"),  # Sortie pour le graphique combiné existant  
@@ -87,9 +105,7 @@ ui <- page_fluid(
         ),
         card(
           card_header("Conformités de la region"),
-          plotOutput("france_plot"),    # Nouveau graphique pour la France
           plotOutput("region_plot"),    # Nouveau graphique pour la région sélectionnée
-          plotOutput("france_matrix_plot"),  # Nouveau graphique pour la France par matrice
           plotOutput("region_matrix_plot")   # Nouveau graphique pour la région sélectionnée par matrice
         )
       )

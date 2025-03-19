@@ -2,6 +2,7 @@
 source("Script/page_web/map_logic.R")
 source("Script/page_web/plot_logic.R")
 
+
 generate_pfas_table <- function(rowid) {
   pfas_filtered <- pfas %>% filter(rowid == !!rowid)  # Sélectionner les pfas correspondant au rowid
   
@@ -328,23 +329,44 @@ server <- function(input, output, session) {
   
   output$evo_une_substance <- renderPlot({
     pfas_summary <- pfas %>%
+      filter(substance == input$une_substance) %>% # Filtrer pour ne conserver que la substance PFOS 
       left_join(france %>% select(rowid, year_col = year), by = "rowid") %>%  # Associer 'years' au dataframe pfas_df et renommer la colonne 'year' en 'year_col'
       group_by(year_col, substance) %>%  # Groupement par année et substance
       summarise(
         avg_value = sum(value, na.rm = TRUE),  # Calcul de la moyenne des valeurs
+        nb_valeur = n(),  
         .groups = "drop"
-      ) %>%
-      filter(substance == input$une_substance)  # Filtrer pour ne conserver que la substance PFOS
+      )
     
-    ggplot(pfas_summary, aes(x = year_col, y = avg_value)) +
-      geom_line() +  # Tracer la courbe
-      geom_point() +  # Ajouter des points pour mieux visualiser les données
-      labs(
-        title = "Évolution des valeurs cumulées pour les PFOS",
-        x = "Année",
-        y = "Valeur totale"
+    ggplot() +
+      geom_line(data = pfas_summary, 
+                aes(x = year_col, y = nb_valeur), color = "steelblue", size = 1) +
+      geom_point(data = pfas_summary,
+                 aes(x = year_col, y = nb_valeur), color = "steelblue", size = 2) +
+      geom_line(data = pfas_summary,
+                aes(x = year_col, y = avg_value * max(pfas_summary$nb_valeur) / max(pfas_summary$avg_value)), 
+                color = "red", size = 1.2) +
+      geom_point(data = pfas_summary, 
+                 aes(x = year_col, y = avg_value * max(pfas_summary$nb_valeur) / max(pfas_summary$avg_value)), 
+                 color = "red", size = 2) +
+      scale_y_continuous(
+        name = "Nombre de prélèvements",
+        sec.axis = sec_axis(~ . * max(pfas_summary$avg_value) / max(pfas_summary$nb_valeur), name = "Somme des PFAS")
       ) +
-      theme_minimal()
+      scale_x_continuous(
+        breaks = if (length(unique(pfas_summary$year_col)) > 1) {
+          seq(min(pfas_summary$year_col), max(pfas_summary$year_col) - 1, by = 2)
+        } else {
+          unique(pfas_summary$year_col)
+        }
+      ) +
+      labs(title = paste("Nombre de prélèvements par année et évolution de la quantité de", input$une_substance), x = "Année") +
+      theme_minimal() +
+      theme(
+        axis.title.y = element_text(color = "steelblue", size = 12),  
+        axis.title.y.right = element_text(color = "red", size = 12)  
+      )
+    
   })
   
   # Nouveau graphique pour la région sélectionnée par matrice
@@ -400,6 +422,49 @@ server <- function(input, output, session) {
     # Exécuter un script JS pour ouvrir l'accordéon
     session$sendCustomMessage("openAccordion", list(id = "region_accordion"))
   })
+  
+  selected_dates <- reactive({
+    req(input$map_marker_click)  # Vérifie qu'un clic a eu lieu
+    
+    lat <- input$map_marker_click$lat
+    lon <- input$map_marker_click$lng
+    print(paste(paste("lat : ",lat),paste(" lon :", lon)))
+
+    dates <- unique(france_norme %>% 
+                      filter(lat == !!lat, lon == !!lon) %>% 
+                      mutate(date_year = paste(format(date, "%Y-%m-%d"), year, sep = " - ")) %>%
+                      pull(date_year))  # Récupère les valeurs uniques de la colonne date
+    
+    return(dates)
+  })
+  
+  observe({
+    req(input$map_marker_click)  # Vérifie qu'un clic a eu lieu
+    
+    lat <- input$map_marker_click$lat
+    lon <- input$map_marker_click$lng
+
+    fr_filtre <- france_norme %>% 
+      filter(lat == !!lat, lon == !!lon) %>% 
+      mutate(date_year = (paste(format(date, "%Y-%m-%d"), year, sep = " - "))) %>%
+      arrange(desc(date))
+    
+    if (!input$ignore_year) {
+      fr_filtre <- fr_filtre %>%
+        filter(year == input$year)
+    }
+    
+    updateSelectInput(session, "date", choices = setNames(fr_filtre$rowid, fr_filtre$date_year))
+  })
+  
+  output$table_pfas <- renderTable({
+    id_prelev <- input$date
+    pfas %>%
+      filter(rowid == id_prelev) %>%
+      select(substance, value, unit)
+  })
+  
+  
   
   # Texte pour la région sélectionnée
   output$region_name <- renderText({
